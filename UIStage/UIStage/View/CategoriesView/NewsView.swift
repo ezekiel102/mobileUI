@@ -9,13 +9,7 @@ import SwiftUI
 
 struct NewsView: View {
     var body: some View {
-        NavigationStack {
-            ZStack {
-                Color.blue
-                Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-            }
-            .navigationTitle("Новости")
-        }
+        Color.blue
     }
 }
 

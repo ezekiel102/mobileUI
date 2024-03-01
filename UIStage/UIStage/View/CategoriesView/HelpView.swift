@@ -8,13 +8,37 @@
 import SwiftUI
 
 struct HelpView: View {
+
+    let columns: [GridItem] = [
+        GridItem(.fixed(174), spacing: 9, alignment: nil),
+        GridItem(.fixed(174), spacing: 9, alignment: nil)
+        ]
+
+    private let images = ["kids", "adults", "grands", "pets", "events"]
+    private let categoryName = ["Дети", "Взрослые", "Пожилые", "Животные", "Мероприятия"]
+
     var body: some View {
-        NavigationStack {
-            ZStack {
-                Color.yellow
-                Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-            }
-            .navigationTitle("Помочь")
+        ScrollView {
+            LazyVGrid(columns: columns,
+                      spacing: 9,
+                      pinnedViews: [.sectionHeaders],
+                      content: {
+                Section {
+                    ForEach(0..<5) { item in
+                        NavigationLink {
+                            EView(category: categoryName[item])
+                        } label: {
+                            HelpCategoryView(image: images[item],
+                                             categoryName: categoryName[item])
+                            .frame(height: 160)
+                        }
+                    }
+                } header: {
+                    Text("Выберите категорию помощи")
+                        .font(.textStyle2)
+                        .frame(height: 36)
+                }
+            })
         }
     }
 }

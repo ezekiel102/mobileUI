@@ -9,13 +9,7 @@ import SwiftUI
 
 struct ProfileView: View {
     var body: some View {
-        NavigationStack {
-            ZStack {
-                Color.purple
-                Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-            }
-            .navigationTitle("Профиль")
-        }
+        Color.purple
     }
 }
 

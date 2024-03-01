@@ -10,7 +10,6 @@ import SwiftUI
 struct SplashScreen: View {
     var body: some View {
         GeometryReader { geometry in
-//            ZStack() {
             Color.paleGrey
                 .ignoresSafeArea()
             Image("logo")
@@ -32,7 +31,6 @@ struct SplashScreen: View {
                 .frame(width: 116, height: 15.5)
                 .position(x: geometry.size.width / 2 - 7.5,
                           y: geometry.size.height - 56.25)
-//            }
         }
     }
 }
