@@ -14,7 +14,7 @@ enum TabBarNavigation: Int, CaseIterable {
     case help
     case history
     case profile
-    
+
     var name: String {
         switch self {
         case .news:
@@ -29,7 +29,7 @@ enum TabBarNavigation: Int, CaseIterable {
             return "Профиль"
         }
     }
-    
+
     var imageName: String {
         switch self {
         case .news:

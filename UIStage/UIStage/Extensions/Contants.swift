@@ -44,7 +44,7 @@ enum UICons {
     static let heartFrameHeight: CGFloat = 15
     static let tabItemImageDeltaCenterX: CGFloat = 20
 
-    //MARK: - LazyVGrid HelpCategories constants
+    // MARK: - LazyVGrid HelpCategories constants
     static let categoryImageFrameWidth: CGFloat = 174
     static let categoryImageFrameHeight: CGFloat = 160
     static let headerHeight: CGFloat = 48

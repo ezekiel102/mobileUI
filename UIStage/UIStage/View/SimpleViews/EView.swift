@@ -10,7 +10,7 @@ import SwiftUI
 struct EView: View {
 
     @Environment(\.dismiss) var dismiss
-    
+
     var category: String
 
     var body: some View {

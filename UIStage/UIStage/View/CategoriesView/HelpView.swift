@@ -38,7 +38,7 @@ struct HelpView: View {
                                 .frame(height: UICons.categoryImageFrameHeight)
                             }
                         }
-                    } header : {
+                    } header: {
                         Text("Выберите категорию помощи")
                             .font(.textStyle2)
                             .frame(height: UICons.headerHeight)

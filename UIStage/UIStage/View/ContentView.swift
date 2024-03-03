@@ -20,8 +20,7 @@ struct ContentView: View {
                                 showSplashScreen = false
                             }
                         }
-                    }
-            else {
+            } else {
                 TabBar(viewModel: viewModel)
             }
         }
@@ -32,4 +31,3 @@ struct ContentView_Previews: PreviewProvider {
         ContentView(viewModel: ViewModel())
     }
 }
-

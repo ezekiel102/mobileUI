@@ -5,9 +5,8 @@
 ////  Created by Рустем on 29.02.2024.
 ////
 //
-//import SwiftUI
-//
-//struct CategoriesView: View {
+// import SwiftUI
+// struct CategoriesView: View {
 //
 //    let category: String
 //    let view: views
@@ -37,11 +36,10 @@
 //            }
 //        }
 //    }
+// }
 //
-//}
-//
-//struct CategoriesView_Previews: PreviewProvider {
+// struct CategoriesView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        CategoriesView(category: "Category", view: views.newsView)
 //    }
-//}
+// }
