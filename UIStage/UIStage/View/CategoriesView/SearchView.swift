@@ -8,13 +8,22 @@
 import SwiftUI
 
 struct SearchView: View {
+
+    let viewModel: ViewModel
+
     var body: some View {
-        Color.green
+        NavigationStack {
+            Color.green
+                .overlay {
+                    NavigationBar(category: viewModel.name, action: { exit(1) })
+                }
+                .navigationBarHidden(true)
+        }
     }
 }
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchView()
+        SearchView(viewModel: ViewModel())
     }
 }

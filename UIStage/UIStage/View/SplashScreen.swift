@@ -13,24 +13,31 @@ struct SplashScreen: View {
             Color.paleGrey
                 .ignoresSafeArea()
             Image("logo")
-                .frame(width: 247, height: 74)
-                .position(x: geometry.size.width / 2 + 10,
-                          y: geometry.size.height / 2 - 136.5)
-            ProgressView(value: 0.5)
-                .frame(width: 36, height: 36)
+                .resizable()
+                .frame(maxWidth: UICons.logoMaxWidth, maxHeight: UICons.logoMaxHeight)
+                .frame(width: geometry.size.width - UICons.logoDeltaWidth,
+                       height: (geometry.size.width - UICons.logoDeltaWidth) * UICons.logoAsceptRatio)
+                .position(x: geometry.size.width / 2 + UICons.logoDeltaCenterX,
+                          y: geometry.size.height / 2 + UICons.logoDeltaCenterY)
+            ProgressView()
+                .frame(width: UICons.activityIndicatorFrameSize,
+                       height: UICons.activityIndicatorFrameSize)
                 .progressViewStyle(.circular)
                 .controlSize(/*@START_MENU_TOKEN@*/.large/*@END_MENU_TOKEN@*/)
                 .position(x: geometry.size.width / 2,
-                          y: geometry.size.height / 2 + 41.5)
+                          y: geometry.size.height / 2 + UICons.activityIndicatorDeltaCenterY)
             Text("Загрузка...")
                 .font(.textStyle6)
-                .frame(width: 68, height: 15)
-                .position(x: geometry.size.width / 2 + 12.5,
-                          y: geometry.size.height / 2 + 87)
+                .frame(width: UICons.loadingFrameWidth,
+                       height: UICons.loadingFrameHeight)
+                .position(x: geometry.size.width / 2 + UICons.loadingDeltaCenterX,
+                          y: geometry.size.height / 2 +
+                          UICons.activityIndicatorDeltaCenterY + UICons.loadingDeltaCenterYFromAI)
             Image("simbirSoft")
-                .frame(width: 116, height: 15.5)
-                .position(x: geometry.size.width / 2 - 7.5,
-                          y: geometry.size.height - 56.25)
+                .frame(width: UICons.simbirSoftFrameWidth,
+                       height: UICons.simbirSoftFrameHeight)
+                .position(x: geometry.size.width / 2 + UICons.simbirSoftDeltaCenterX,
+                          y: geometry.size.height + UICons.simbirSoftDeltaCenterY)
         }
     }
 }

@@ -14,7 +14,7 @@ struct NavigationBar: View {
 
     var body: some View {
         GeometryReader { geometry in
-            Color.leaf
+            Color.leaf.ignoresSafeArea(edges: .top)
             Button {
                 action()
             } label: {
@@ -22,15 +22,16 @@ struct NavigationBar: View {
                     .foregroundColor(.white)
                     .font(.system(size: 21))
             }
-            .position(x: 26.6, y: geometry.size.height - 18.5)
+            .position(x: UICons.backButtonXPosition,
+                      y: geometry.size.height + UICons.categoryNameDeltaCenterY)
             Text(category)
                 .font(.textStyle22)
                 .foregroundColor(.white)
-                .position(x: geometry.size.width / 2, y: geometry.size.height - 18.5)
+                .position(x: geometry.size.width / 2,
+                          y: geometry.size.height + UICons.categoryNameDeltaCenterY)
         }
-        .frame(height: 64, alignment: .top)
+        .frame(height: UICons.naviGationBarHeight, alignment: .top)
         .frame(maxHeight: .infinity, alignment: .top)
-        .ignoresSafeArea(edges: .top)
     }
 }
 

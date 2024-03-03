@@ -10,16 +10,16 @@ import SwiftUI
 struct EView: View {
 
     @Environment(\.dismiss) var dismiss
+    
     var category: String
 
     var body: some View {
         ZStack {
             Color.orange
         }
-        .safeAreaInset(edge: .top, content: {
+        .overlay {
             NavigationBar(category: category, action: { dismiss() })
-                .frame(height: 36)
-        })
+        }
         .navigationBarHidden(true)
     }
 }

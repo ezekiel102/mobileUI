@@ -8,13 +8,22 @@
 import SwiftUI
 
 struct ProfileView: View {
+
+    let viewModel: ViewModel
+
     var body: some View {
-        Color.purple
+        NavigationStack {
+            Color.purple
+                .overlay {
+                    NavigationBar(category: viewModel.name, action: { exit(1) })
+                }
+                .navigationBarHidden(true)
+        }
     }
 }
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView()
+        ProfileView(viewModel: ViewModel())
     }
 }

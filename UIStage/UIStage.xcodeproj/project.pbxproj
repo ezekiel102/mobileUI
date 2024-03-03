@@ -20,7 +20,6 @@
 		0AE556BD2B908086002A69AA /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE556BC2B908086002A69AA /* SplashScreen.swift */; };
 		0AE556BF2B908218002A69AA /* Contants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE556BE2B908218002A69AA /* Contants.swift */; };
 		0AE556C32B90A1DF002A69AA /* Shapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE556C22B90A1DF002A69AA /* Shapes.swift */; };
-		0AE556C52B90D12D002A69AA /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE556C42B90D12D002A69AA /* TabBarView.swift */; };
 		0AE556C82B90D367002A69AA /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE556C72B90D367002A69AA /* NewsView.swift */; };
 		0AE556CA2B90D371002A69AA /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE556C92B90D371002A69AA /* SearchView.swift */; };
 		0AE556CC2B90D37B002A69AA /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE556CB2B90D37B002A69AA /* HelpView.swift */; };
@@ -32,6 +31,9 @@
 		0AE556DA2B9220F6002A69AA /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE556D92B9220F6002A69AA /* NavigationBar.swift */; };
 		0AE556DC2B922AAF002A69AA /* EView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE556DB2B922AAF002A69AA /* EView.swift */; };
 		0AE556DE2B9253F7002A69AA /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE556DD2B9253F7002A69AA /* TabBar.swift */; };
+		0AE556E02B937FA3002A69AA /* TabBarNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE556DF2B937FA3002A69AA /* TabBarNavigation.swift */; };
+		0AE556E22B937FDB002A69AA /* HelpCategoriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE556E12B937FDB002A69AA /* HelpCategoriesModel.swift */; };
+		0AE556E42B937FF0002A69AA /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE556E32B937FF0002A69AA /* ViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,7 +70,6 @@
 		0AE556BC2B908086002A69AA /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
 		0AE556BE2B908218002A69AA /* Contants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contants.swift; sourceTree = "<group>"; };
 		0AE556C22B90A1DF002A69AA /* Shapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shapes.swift; sourceTree = "<group>"; };
-		0AE556C42B90D12D002A69AA /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		0AE556C72B90D367002A69AA /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
 		0AE556C92B90D371002A69AA /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		0AE556CB2B90D37B002A69AA /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
@@ -81,6 +82,9 @@
 		0AE556D92B9220F6002A69AA /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		0AE556DB2B922AAF002A69AA /* EView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EView.swift; sourceTree = "<group>"; };
 		0AE556DD2B9253F7002A69AA /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
+		0AE556DF2B937FA3002A69AA /* TabBarNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarNavigation.swift; sourceTree = "<group>"; };
+		0AE556E12B937FDB002A69AA /* HelpCategoriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpCategoriesModel.swift; sourceTree = "<group>"; };
+		0AE556E32B937FF0002A69AA /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +135,7 @@
 		0AE5560B2B892AA5002A69AA /* UIStage */ = {
 			isa = PBXGroup;
 			children = (
+				0AE556E52B94C93A002A69AA /* temp */,
 				0AE556D32B910CBE002A69AA /* Info.plist */,
 				0AE556BA2B907F48002A69AA /* Application */,
 				0AE556B72B907E95002A69AA /* Model */,
@@ -170,12 +175,11 @@
 		0AE556B62B907E8C002A69AA /* View */ = {
 			isa = PBXGroup;
 			children = (
-				0AE556D62B911E2E002A69AA /* SimpleViews */,
-				0AE556C62B90D137002A69AA /* CategoriesView */,
 				0AE5560E2B892AA5002A69AA /* ContentView.swift */,
 				0AE556BC2B908086002A69AA /* SplashScreen.swift */,
-				0AE556D42B911375002A69AA /* CategoriesView.swift */,
-				0AE556C42B90D12D002A69AA /* TabBarView.swift */,
+				0AE556DD2B9253F7002A69AA /* TabBar.swift */,
+				0AE556D62B911E2E002A69AA /* SimpleViews */,
+				0AE556C62B90D137002A69AA /* CategoriesView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -183,6 +187,7 @@
 		0AE556B72B907E95002A69AA /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0AE556E12B937FDB002A69AA /* HelpCategoriesModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -190,6 +195,8 @@
 		0AE556B82B907EB0002A69AA /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				0AE556DF2B937FA3002A69AA /* TabBarNavigation.swift */,
+				0AE556E32B937FF0002A69AA /* ViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -198,8 +205,6 @@
 			isa = PBXGroup;
 			children = (
 				0AE556D12B910C5E002A69AA /* OfficinaSansExtraBold.ttf */,
-				0AE556BE2B908218002A69AA /* Contants.swift */,
-				0AE556C22B90A1DF002A69AA /* Shapes.swift */,
 				0AE556102B892AA6002A69AA /* Assets.xcassets */,
 				0AE556122B892AA6002A69AA /* Preview Content */,
 			);
@@ -220,6 +225,8 @@
 			isa = PBXGroup;
 			children = (
 				0AE5563A2B8A0CB3002A69AA /* Extensions.swift */,
+				0AE556BE2B908218002A69AA /* Contants.swift */,
+				0AE556C22B90A1DF002A69AA /* Shapes.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -242,9 +249,16 @@
 				0AE556D72B911E47002A69AA /* HelpCategoryView.swift */,
 				0AE556D92B9220F6002A69AA /* NavigationBar.swift */,
 				0AE556DB2B922AAF002A69AA /* EView.swift */,
-				0AE556DD2B9253F7002A69AA /* TabBar.swift */,
 			);
 			path = SimpleViews;
+			sourceTree = "<group>";
+		};
+		0AE556E52B94C93A002A69AA /* temp */ = {
+			isa = PBXGroup;
+			children = (
+				0AE556D42B911375002A69AA /* CategoriesView.swift */,
+			);
+			path = temp;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -381,7 +395,6 @@
 				0AE556DA2B9220F6002A69AA /* NavigationBar.swift in Sources */,
 				0AE556BD2B908086002A69AA /* SplashScreen.swift in Sources */,
 				0AE556CC2B90D37B002A69AA /* HelpView.swift in Sources */,
-				0AE556C52B90D12D002A69AA /* TabBarView.swift in Sources */,
 				0AE556D82B911E47002A69AA /* HelpCategoryView.swift in Sources */,
 				0AE556DE2B9253F7002A69AA /* TabBar.swift in Sources */,
 				0AE5563B2B8A0CB3002A69AA /* Extensions.swift in Sources */,
@@ -392,7 +405,10 @@
 				0AE556C32B90A1DF002A69AA /* Shapes.swift in Sources */,
 				0AE556D52B911375002A69AA /* CategoriesView.swift in Sources */,
 				0AE556BF2B908218002A69AA /* Contants.swift in Sources */,
+				0AE556E42B937FF0002A69AA /* ViewModel.swift in Sources */,
+				0AE556E02B937FA3002A69AA /* TabBarNavigation.swift in Sources */,
 				0AE5560F2B892AA5002A69AA /* ContentView.swift in Sources */,
+				0AE556E22B937FDB002A69AA /* HelpCategoriesModel.swift in Sources */,
 				0AE5560D2B892AA5002A69AA /* UIStageApp.swift in Sources */,
 				0AE556392B8A0CA6002A69AA /* SceneDelegate.swift in Sources */,
 				0AE556D02B90D38B002A69AA /* ProfileView.swift in Sources */,
@@ -559,6 +575,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = UIStage/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Хочу помочь";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -592,6 +609,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = UIStage/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Хочу помочь";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

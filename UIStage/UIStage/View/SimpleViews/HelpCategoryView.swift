@@ -18,11 +18,12 @@ struct HelpCategoryView: View {
             Image(image)
                 .offset(x: 0, y: 0)
             Text(categoryName)
-                .offset(x: 0, y: 58)
+                .offset(x: 0, y: UICons.imageCategoryDeltaCenterY)
                 .font(.textStyle13)
                 .foregroundColor(.leaf)
         }
-            .frame(width: 174.0, height: 160.0)
+        .frame(width: UICons.categoryImageFrameWidth,
+               height: UICons.categoryImageFrameHeight)
     }
 }
 

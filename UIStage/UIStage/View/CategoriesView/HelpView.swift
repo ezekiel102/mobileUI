@@ -9,42 +9,52 @@ import SwiftUI
 
 struct HelpView: View {
 
+    let viewModel: ViewModel
+
     let columns: [GridItem] = [
-        GridItem(.fixed(174), spacing: 9, alignment: nil),
-        GridItem(.fixed(174), spacing: 9, alignment: nil)
+        GridItem(.fixed(UICons.categoryImageFrameWidth),
+                 spacing: UICons.spacing,
+                 alignment: nil),
+        GridItem(.fixed(UICons.categoryImageFrameWidth),
+                 spacing: UICons.spacing,
+                 alignment: nil)
         ]
 
-    private let images = ["kids", "adults", "grands", "pets", "events"]
-    private let categoryName = ["Дети", "Взрослые", "Пожилые", "Животные", "Мероприятия"]
-
     var body: some View {
-        ScrollView {
-            LazyVGrid(columns: columns,
-                      spacing: 9,
-                      pinnedViews: [.sectionHeaders],
-                      content: {
-                Section {
-                    ForEach(0..<5) { item in
-                        NavigationLink {
-                            EView(category: categoryName[item])
-                        } label: {
-                            HelpCategoryView(image: images[item],
-                                             categoryName: categoryName[item])
-                            .frame(height: 160)
+        NavigationStack {
+            ScrollView {
+                LazyVGrid(columns: columns,
+                          spacing: UICons.spacing,
+                          pinnedViews: [.sectionHeaders],
+                          content: {
+                    Section {
+                        ForEach(viewModel.categories) { category in
+                            NavigationLink {
+                                EView(category: category.name)
+                            } label: {
+                                HelpCategoryView(
+                                    image: category.imageName,
+                                    categoryName: category.name)
+                                .frame(height: UICons.categoryImageFrameHeight)
+                            }
                         }
+                    } header : {
+                        Text("Выберите категорию помощи")
+                            .font(.textStyle2)
+                            .frame(height: UICons.headerHeight)
                     }
-                } header: {
-                    Text("Выберите категорию помощи")
-                        .font(.textStyle2)
-                        .frame(height: 36)
-                }
-            })
+                    .offset(x: 0, y: UICons.naviGationBarHeight)
+                })
+            }
+            .overlay {
+                NavigationBar(category: viewModel.name, action: { exit(1) })
+            }
         }
     }
 }
 
 struct HelpView_Previews: PreviewProvider {
     static var previews: some View {
-        HelpView()
+        HelpView(viewModel: ViewModel())
     }
 }

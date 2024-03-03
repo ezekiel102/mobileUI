@@ -14,11 +14,17 @@ extension Color {
     static let darkSlateBlue = Color(red: 22.0 / 255.0, green: 59.0 / 255.0, blue: 79.0 / 255.0)
     static let whiteOne = Color(white: 216.0 / 255.0)
     static let warmGrey = Color(white: 146.0 / 255.0)
-    static let coolGreyTwo = Color(red: 174.0 / 255.0, green: 176.0 / 255.0, blue: 176.0 / 255.0)
+    static let coolGreyTwo = Color(red: 174.0 / 255.0,
+                                   green: 176.0 / 255.0,
+                                   blue: 176.0 / 255.0)
     static let whiteThree = Color(white: 229.0 / 255.0)
     static let offWhite = Color(red: 1.0, green: 1.0, blue: 253.0 / 255.0)
-    static let lightOliveGreen = Color(red: 158.0 / 255.0, green: 191.0 / 255.0, blue: 80.0 / 255.0)
-    static let lightGreyTwo = Color(red: 234.0 / 255.0, green: 237.0 / 255.0, blue: 232.0 / 255.0)
+    static let lightOliveGreen = Color(red: 158.0 / 255.0,
+                                       green: 191.0 / 255.0,
+                                       blue: 80.0 / 255.0)
+    static let lightGreyTwo = Color(red: 234.0 / 255.0,
+                                    green: 237.0 / 255.0,
+                                    blue: 232.0 / 255.0)
     static let blueGrey = Color(red: 98.0 / 255.0, green: 127.0 / 255.0, blue: 143.0 / 255.0)
     static let whiteTwo = Color(white: 225.0 / 255.0)
     static let lightGrey = Color(red: 232.0 / 255.0, green: 237.0 / 255.0, blue: 237.0 / 255.0)
