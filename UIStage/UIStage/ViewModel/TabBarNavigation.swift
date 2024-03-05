@@ -45,22 +45,6 @@ enum TabBarNavigation: CaseIterable {
         }
     }
 
-//    @ViewBuilder
-//    var destination: some View {
-//        switch self {
-//        case .news:
-//            NewsView()
-//        case .search:
-//            SearchView()
-//        case .help:
-//            HelpView()
-//        case .history:
-//            HistoryView()
-//        case .profile:
-//            ProfileView()
-//        }
-//    }
-
     @ViewBuilder
     func changeView(viewModel: ViewModel) -> some View {
         switch self {

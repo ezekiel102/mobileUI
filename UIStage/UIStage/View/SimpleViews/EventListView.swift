@@ -56,22 +56,24 @@ struct EventListView: View {
                 spacing: 0,
                 content: {
                     Button {
-                        isFinished = !isFinished
+                        isFinished ?
+                        (isFinished = !isFinished) : (isFinished = isFinished)
                     } label: {
                         Text("Текущие")
                             .font(.textStyle9)
                             .foregroundColor(isFinished ? .leaf : .white)
+                            .frame(maxWidth: .infinity, minHeight: 23.5)
                     }
-                    .frame(maxWidth: .infinity, minHeight: 23.5)
                     .background(!isFinished ? Color.leaf : .white)
                     Button {
-                        isFinished = !isFinished
+                        isFinished ?
+                        (isFinished = isFinished) : (isFinished = !isFinished)
                     } label: {
                         Text("Завершенные")
                             .font(.textStyle9)
                             .foregroundColor(!isFinished ? .leaf : .white)
+                            .frame(maxWidth: .infinity, minHeight: 23.5)
                     }
-                    .frame(maxWidth: .infinity, minHeight: 23.5)
                     .background(isFinished ? Color.leaf : .white)
                 })
             .border(Color.leaf, width: 1.0)
