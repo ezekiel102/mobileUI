@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct UIStageApp: App {
 
-    private let viewModel = ViewModel()
+    @StateObject private var viewModel = ViewModel()
 
     var body: some Scene {
         WindowGroup {

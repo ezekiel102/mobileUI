@@ -9,44 +9,40 @@ import SwiftUI
 
 enum UICons {
 
+    // MARK: - Global constants
+    static let zeroSpacingForVStack: CGFloat = 0
+
     // MARK: - SplashScreen constants
-    static let logoAsceptRatio: CGFloat = 74 / 247
-    static let logoDeltaWidth: CGFloat = 128
-    static let logoMaxWidth: CGFloat = 321.1
-    static let logoMaxHeight: CGFloat = 96.2
-    static let logoDeltaCenterX: CGFloat = 10
-    static let logoDeltaCenterY: CGFloat = -99.5
-    static let activityIndicatorFrameSize: CGFloat = 36
-    static let activityIndicatorDeltaCenterY: CGFloat = 41.5
-    static let loadingFrameWidth: CGFloat = 68
-    static let loadingFrameHeight: CGFloat = 15
-    static let loadingDeltaCenterX: CGFloat = 3.5
-    static let loadingDeltaCenterYFromAI: CGFloat = 38
-    static let simbirSoftFrameWidth: CGFloat = 116
-    static let simbirSoftFrameHeight: CGFloat = 15.5
-    static let simbirSoftDeltaCenterX: CGFloat = -7.5
-    static let simbirSoftDeltaCenterY: CGFloat = -55.75
+    static let logoAspectRatio: CGFloat = 247 / 74
+    static let logoHorizontalPadding: CGFloat = 54
+    static let topPaddingLogoActivityIndicator: CGFloat = 86
+    static let loadingVStackSpacing: CGFloat = 20
+    static let simbirSoftAspectRatio: CGFloat = 116 / 16
+    static let simbirSoftBottomPadding: CGFloat = 49
+    static let simbirSoftHorizontalPadding: CGFloat = 130
+    static let simbirSoftFrameHeight: CGFloat = 16
 
     // MARK: - NavigationBar constants
-    static let categoryNameDeltaCenterY: CGFloat = -18
-    static let backButtonXPosition: CGFloat = 26.6
-    static let naviGationBarHeight: CGFloat = 44
+    static let leadingPaddingBackButton: CGFloat = 19
+    static let navigationBarFrameHeight: CGFloat = 44
 
     // MARK: - TabBar constants
     static let tabBarHeight: CGFloat = 49
-    static let spacing: CGFloat = 9
-    static let numbersOfTabItems: CGFloat = 5
-    static let circleSize: CGFloat = 42
-    static let textDeltaCenterY: CGFloat = 10
-    static let textHeightOfText: CGFloat = 12
-    static let helpButtonDeltaCenterY: CGFloat = -13.5
-    static let heartFrameWidth: CGFloat = 18
-    static let heartFrameHeight: CGFloat = 15
-    static let tabItemImageDeltaCenterX: CGFloat = 20
+    static let circleDiametr: CGFloat = 42
+    static let arcDiametr: CGFloat = 54
+    static let bottomPaddingBarText: CGFloat = 4
+    static let topPaddingBarImage: CGFloat = 8
+    static let helpButtonOffset: CGFloat = -12.5
 
     // MARK: - LazyVGrid HelpCategories constants
+    static let topPaddingHeaderText: CGFloat = 20
+    static let bottomPaddingHeaderText: CGFloat = 8
+    static let lazyVGridColumnsSpacing: CGFloat = 9
+    static let lazyVGridRowSpacing: CGFloat = 9
+
+    // MARK: - Category Image constants
     static let categoryImageFrameWidth: CGFloat = 174
     static let categoryImageFrameHeight: CGFloat = 160
-    static let headerHeight: CGFloat = 48
-    static let imageCategoryDeltaCenterY: CGFloat = 58
+    static let bottomPaddingText: CGFloat = 10
+
 }

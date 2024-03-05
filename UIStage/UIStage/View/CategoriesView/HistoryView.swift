@@ -9,15 +9,19 @@ import SwiftUI
 
 struct HistoryView: View {
 
-    let viewModel: ViewModel
+    let historyTabBarView: TabBarNavigation = .news
+    @ObservedObject var viewModel: ViewModel
 
     var body: some View {
         NavigationStack {
-            Color.yellow
-                .overlay {
-                    NavigationBar(category: viewModel.name, action: { exit(1) })
-                }
-                .navigationBarHidden(true)
+            VStack(
+                spacing: UICons.zeroSpacingForVStack,
+                content: {
+                    NavigationBar(category: historyTabBarView.name, action: { exit(1) })
+                    ZStack {
+                        Color.yellow
+                    }
+                })
         }
     }
 }

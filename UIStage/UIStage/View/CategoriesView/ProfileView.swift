@@ -9,15 +9,19 @@ import SwiftUI
 
 struct ProfileView: View {
 
-    let viewModel: ViewModel
+    let profileTabBarView: TabBarNavigation = .news
+    @ObservedObject var viewModel: ViewModel
 
     var body: some View {
         NavigationStack {
-            Color.purple
-                .overlay {
-                    NavigationBar(category: viewModel.name, action: { exit(1) })
-                }
-                .navigationBarHidden(true)
+            VStack(
+                spacing: UICons.zeroSpacingForVStack,
+                content: {
+                    NavigationBar(category: profileTabBarView.name, action: { exit(1) })
+                    ZStack {
+                        Color.purple
+                    }
+                })
         }
     }
 }

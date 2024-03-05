@@ -9,15 +9,19 @@ import SwiftUI
 
 struct NewsView: View {
 
-    let viewModel: ViewModel
+    let newsTabBarView: TabBarNavigation = .news
+    @ObservedObject var viewModel: ViewModel
 
     var body: some View {
         NavigationStack {
-            Color.blue
-                .overlay {
-                    NavigationBar(category: viewModel.name, action: { exit(1) })
-                }
-                .navigationBarHidden(true)
+            VStack(
+                spacing: UICons.zeroSpacingForVStack,
+                content: {
+                    NavigationBar(category: newsTabBarView.name, action: { exit(1) })
+                    ZStack {
+                        Color.blue
+                    }
+                })
         }
     }
 }

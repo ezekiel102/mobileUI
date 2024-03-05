@@ -9,29 +9,13 @@ import SwiftUI
 
 struct Arc: Shape {
 
-    let circleRadius: CGFloat = 27
-
     func path(in rect: CGRect) -> Path {
         var path = Path()
-        path.addArc(center: CGPoint(x: rect.midX, y: 12),
-                    radius: circleRadius,
+        path.addArc(center: CGPoint(x: rect.midX, y: rect.midY + UICons.helpButtonOffset),
+                    radius: UICons.arcDiametr / 2,
                     startAngle: .degrees(0),
                     endAngle: .degrees(180),
                     clockwise: true)
         return path
     }
-}
-
-struct RectangleStroke: Shape {
-
-    func path(in rect: CGRect) -> Path {
-        var path = Path()
-        path.move(to: CGPoint(x: rect.minX, y: rect.minY))
-        path.addLine(to: CGPoint(x: rect.maxX, y: rect.minY))
-        path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY))
-        path.addLine(to: CGPoint(x: rect.minX, y: rect.maxY))
-        path.closeSubpath()
-        return path
-    }
-
 }

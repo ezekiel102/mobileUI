@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum TabBarNavigation: Int, CaseIterable {
+enum TabBarNavigation: CaseIterable {
 
     case news
     case search
@@ -42,6 +42,38 @@ enum TabBarNavigation: Int, CaseIterable {
             return "clock.arrow.circlepath"
         case .profile:
             return "person.crop.circle"
+        }
+    }
+
+//    @ViewBuilder
+//    var destination: some View {
+//        switch self {
+//        case .news:
+//            NewsView()
+//        case .search:
+//            SearchView()
+//        case .help:
+//            HelpView()
+//        case .history:
+//            HistoryView()
+//        case .profile:
+//            ProfileView()
+//        }
+//    }
+
+    @ViewBuilder
+    func changeView(viewModel: ViewModel) -> some View {
+        switch self {
+        case .news:
+            NewsView(viewModel: viewModel)
+        case .search:
+            SearchView(viewModel: viewModel)
+        case .help:
+            HelpView(viewModel: viewModel)
+        case .history:
+            HistoryView(viewModel: viewModel)
+        case .profile:
+            ProfileView(viewModel: viewModel)
         }
     }
 }

@@ -13,25 +13,30 @@ struct NavigationBar: View {
     var action: () -> Void
 
     var body: some View {
-        GeometryReader { geometry in
-            Color.leaf.ignoresSafeArea(edges: .top)
-            Button {
-                action()
-            } label: {
-                Image(systemName: "chevron.left")
-                    .foregroundColor(.white)
-                    .font(.system(size: 21))
+            ZStack {
+                Color.leaf
+                    .ignoresSafeArea()
+                ZStack {
+                    HStack {
+                        Button {
+                            action()
+                        } label: {
+                            Image(systemName: "chevron.left")
+                                .font(.textStyle22)
+                                .foregroundColor(.white)
+                                .padding(.leading, UICons.leadingPaddingBackButton)
+                        }
+                        Spacer()
+                    }
+                    Text(category)
+                        .font(.textStyle22)
+                        .foregroundColor(.white)
+                        .lineLimit(1)
+
+                }
             }
-            .position(x: UICons.backButtonXPosition,
-                      y: geometry.size.height + UICons.categoryNameDeltaCenterY)
-            Text(category)
-                .font(.textStyle22)
-                .foregroundColor(.white)
-                .position(x: geometry.size.width / 2,
-                          y: geometry.size.height + UICons.categoryNameDeltaCenterY)
-        }
-        .frame(height: UICons.naviGationBarHeight, alignment: .top)
-        .frame(maxHeight: .infinity, alignment: .top)
+            .frame(height: UICons.navigationBarFrameHeight)
+            .shadow(color: Color(white: 0.0, opacity: 0.1), radius: 2.0, x: 0.0, y: 2.0)
     }
 }
 

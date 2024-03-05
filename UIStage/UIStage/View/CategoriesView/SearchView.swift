@@ -9,15 +9,19 @@ import SwiftUI
 
 struct SearchView: View {
 
-    let viewModel: ViewModel
+    let searchTabBarView: TabBarNavigation = .news
+    @ObservedObject var viewModel: ViewModel
 
     var body: some View {
         NavigationStack {
-            Color.green
-                .overlay {
-                    NavigationBar(category: viewModel.name, action: { exit(1) })
-                }
-                .navigationBarHidden(true)
+            VStack(
+                spacing: UICons.zeroSpacingForVStack,
+                content: {
+                    NavigationBar(category: searchTabBarView.name, action: { exit(1) })
+                    ZStack {
+                        Color.green
+                    }
+                })
         }
     }
 }
