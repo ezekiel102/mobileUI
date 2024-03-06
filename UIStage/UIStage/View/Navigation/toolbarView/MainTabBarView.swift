@@ -1,25 +1,17 @@
 //
-//  TabBar.swift
+//  MainTabBarView.swift
 //  UIStage
 //
-//  Created by Рустем on 01.03.2024.
+//  Created by Рустем on 06.03.2024.
 //
 
 import SwiftUI
 
-struct TabBar: View {
+struct MainTabBarView: View {
 
-    @ObservedObject var viewModel: ViewModel
-    @State var currentTabBarView: TabBarNavigation = .help
+    @EnvironmentObject var viewCoordinator: ViewCoordinator
 
     var body: some View {
-        VStack(spacing: UICons.zeroSpacingForVStack) {
-            currentTabBarView.changeView(viewModel: viewModel)
-            tabBar
-        }
-    }
-
-    var tabBar: some View {
         ZStack {
             Color.white
                 .ignoresSafeArea(edges: .bottom)
@@ -31,9 +23,10 @@ struct TabBar: View {
                         .shadow(color: .whiteTwo, radius: 0.0, x: 0.0, y: -2.0)
                 }
             HStack(alignment: .bottom) {
-                ForEach(TabBarNavigation.allCases, id: \.self) { item in
-                    TabItem(tabBarNavigation: item, currentTabBarView: $currentTabBarView)
-                        .frame(maxWidth: .infinity)
+                ForEach(MainTabBarNavigation.allCases, id: \.self) { item in
+                    MainTabItem(currentView: $viewCoordinator.currentMainView,
+                                tabBarNavigation: item)
+                    .frame(maxWidth: .infinity)
                 }
             }
         }
@@ -41,17 +34,17 @@ struct TabBar: View {
     }
 }
 
-struct TabItem: View {
+struct MainTabItem: View {
 
-    let tabBarNavigation: TabBarNavigation
+    @Binding var currentView: MainTabBarNavigation
 
-    @Binding var currentTabBarView: TabBarNavigation
+    let tabBarNavigation: MainTabBarNavigation
 
     var body: some View {
         Button {
-            currentTabBarView = tabBarNavigation
+            currentView = tabBarNavigation
         } label: {
-            if tabBarNavigation != TabBarNavigation.help {
+            if tabBarNavigation != MainTabBarNavigation.help {
                 tabBarItem
             } else {
                 helpButton
@@ -65,7 +58,7 @@ struct TabItem: View {
                 Image(systemName: tabBarNavigation.imageName)
                     .font(.textStyle22)
                     .foregroundColor(
-                        currentTabBarView != tabBarNavigation ?
+                        currentView != tabBarNavigation ?
                             .warmGrey : .accentColor)
                     .padding(.top, UICons.topPaddingBarImage)
                 Spacer()
@@ -75,7 +68,7 @@ struct TabItem: View {
                 Text(tabBarNavigation.name)
                     .font(.textStyle14)
                     .foregroundColor(
-                        currentTabBarView != tabBarNavigation ?
+                        currentView != tabBarNavigation ?
                             .warmGrey : .accentColor)
                     .padding(.bottom, UICons.bottomPaddingBarText)
             }
@@ -88,14 +81,14 @@ struct TabItem: View {
                 .frame(width: UICons.circleDiametr,
                        height: UICons.circleDiametr)
                 .foregroundColor(
-                    currentTabBarView != tabBarNavigation ?
+                    currentView != tabBarNavigation ?
                         .white : .accentColor)
                 .shadow(color: .leaf, radius: 2.0, x: 0.0, y: 0.0)
                 .overlay {
                     Image(systemName: tabBarNavigation.imageName)
                         .font(.textStyle8)
                         .foregroundColor(
-                            currentTabBarView != tabBarNavigation ?
+                            currentView != tabBarNavigation ?
                                 .leaf : .white)
                 }
                 .offset(x: 0, y: UICons.helpButtonOffset)
@@ -104,7 +97,7 @@ struct TabItem: View {
                 Text(tabBarNavigation.name)
                     .font(.textStyle14)
                     .foregroundColor(
-                        currentTabBarView != tabBarNavigation ?
+                        currentView != tabBarNavigation ?
                             .warmGrey : .accentColor)
                     .padding(.bottom, UICons.bottomPaddingBarText)
             }
@@ -112,8 +105,8 @@ struct TabItem: View {
     }
 }
 
-struct TabBar_Previews: PreviewProvider {
+struct TabBarView_Previews: PreviewProvider {
     static var previews: some View {
-        TabBar(viewModel: ViewModel())
+        MainTabBarView()
     }
 }

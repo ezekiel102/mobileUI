@@ -22,9 +22,9 @@ struct HelpCategoryView: View {
                     .foregroundColor(.leaf)
                     .padding(.bottom, UICons.bottomPaddingText)
             }
+            .frame(maxWidth: .infinity)
         }
-        .frame(width: UICons.categoryImageFrameWidth,
-               height: UICons.categoryImageFrameHeight)
+        .frame(height: UICons.categoryImageFrameHeight)
         .background(Color.lightGreyTwo)
     }
 }

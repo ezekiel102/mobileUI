@@ -9,22 +9,22 @@ import SwiftUI
 
 struct HelpView: View {
 
-    let helpTabBarView: TabBarNavigation = .news
-    @ObservedObject var viewModel: ViewModel
+    @EnvironmentObject var viewModel: ViewModel
 
+    let helpTabBarView: MainTabBarNavigation = .help
     let columns: [GridItem] = [
-        GridItem(.fixed(UICons.categoryImageFrameWidth),
+        GridItem(.flexible(),
                  spacing: UICons.lazyVGridColumnsSpacing,
                  alignment: nil),
-        GridItem(.fixed(UICons.categoryImageFrameWidth),
+        GridItem(.flexible(),
                  spacing: UICons.lazyVGridColumnsSpacing,
                  alignment: nil)
-        ]
+    ]
 
     var body: some View {
         NavigationStack {
             VStack(
-                spacing: UICons.zeroSpacingForVStack,
+                spacing: UICons.zeroSpacingForStack,
                 content: {
                     NavigationBar(category: helpTabBarView.name, action: { exit(1) })
                     ScrollView {
@@ -49,6 +49,7 @@ struct HelpView: View {
                                     .padding(.bottom, UICons.bottomPaddingHeaderText)
                             }
                         })
+                        .padding(.horizontal, UICons.lazyVGridRowSpacing)
                     }
                 })
         }
@@ -56,7 +57,11 @@ struct HelpView: View {
 }
 
 struct HelpView_Previews: PreviewProvider {
+
+    static let viewModel = ViewModel()
+
     static var previews: some View {
-        HelpView(viewModel: ViewModel())
+        HelpView()
+            .environmentObject(viewModel)
     }
 }

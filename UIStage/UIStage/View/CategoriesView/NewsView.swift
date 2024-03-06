@@ -9,13 +9,14 @@ import SwiftUI
 
 struct NewsView: View {
 
-    let newsTabBarView: TabBarNavigation = .news
-    @ObservedObject var viewModel: ViewModel
+    @EnvironmentObject var viewModel: ViewModel
+
+    let newsTabBarView: MainTabBarNavigation = .news
 
     var body: some View {
         NavigationStack {
             VStack(
-                spacing: UICons.zeroSpacingForVStack,
+                spacing: UICons.zeroSpacingForStack,
                 content: {
                     NavigationBar(category: newsTabBarView.name, action: { exit(1) })
                     ZStack {
@@ -28,6 +29,6 @@ struct NewsView: View {
 
 struct NewsView_Previews: PreviewProvider {
     static var previews: some View {
-        NewsView(viewModel: ViewModel())
+        NewsView()
     }
 }

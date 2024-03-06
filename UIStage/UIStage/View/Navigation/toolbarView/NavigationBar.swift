@@ -32,6 +32,7 @@ struct NavigationBar: View {
                         .font(.textStyle22)
                         .foregroundColor(.white)
                         .lineLimit(1)
+                        .frame(width: 228)
 
                 }
             }

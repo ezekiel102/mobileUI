@@ -10,7 +10,7 @@ import SwiftUI
 struct EventPreview: View {
     var body: some View {
         ZStack {
-            VStack(spacing: UICons.zeroSpacingForVStack) {
+            VStack(spacing: UICons.zeroSpacingForStack) {
                 ZStack {
                     image
                     text

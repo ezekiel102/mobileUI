@@ -9,13 +9,14 @@ import SwiftUI
 
 struct SearchView: View {
 
-    let searchTabBarView: TabBarNavigation = .news
-    @ObservedObject var viewModel: ViewModel
+    @EnvironmentObject var viewModel: ViewModel
+
+    let searchTabBarView: MainTabBarNavigation = .search
 
     var body: some View {
         NavigationStack {
             VStack(
-                spacing: UICons.zeroSpacingForVStack,
+                spacing: UICons.zeroSpacingForStack,
                 content: {
                     NavigationBar(category: searchTabBarView.name, action: { exit(1) })
                     ZStack {
@@ -28,6 +29,6 @@ struct SearchView: View {
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchView(viewModel: ViewModel())
+        SearchView()
     }
 }

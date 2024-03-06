@@ -9,13 +9,14 @@ import SwiftUI
 
 struct ProfileView: View {
 
-    let profileTabBarView: TabBarNavigation = .news
-    @ObservedObject var viewModel: ViewModel
+    @EnvironmentObject var viewModel: ViewModel
+
+    let profileTabBarView: MainTabBarNavigation = .profile
 
     var body: some View {
         NavigationStack {
             VStack(
-                spacing: UICons.zeroSpacingForVStack,
+                spacing: UICons.zeroSpacingForStack,
                 content: {
                     NavigationBar(category: profileTabBarView.name, action: { exit(1) })
                     ZStack {
@@ -28,6 +29,6 @@ struct ProfileView: View {
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView(viewModel: ViewModel())
+        ProfileView()
     }
 }

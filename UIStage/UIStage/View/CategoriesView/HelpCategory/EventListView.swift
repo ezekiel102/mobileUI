@@ -11,12 +11,13 @@ struct EventListView: View {
 
     @Environment(\.dismiss) var dismiss
 
-    var category: String
-    var isClosed: Bool = true
     @State var isFinished: Bool = true
 
+    var category: String
+    var isClosed: Bool = true
+
     var body: some View {
-        VStack(spacing: UICons.zeroSpacingForVStack) {
+        VStack(spacing: UICons.zeroSpacingForStack) {
             NavigationBar(category: category, action: { dismiss() })
                 .overlay {
                     HStack {
@@ -53,7 +54,7 @@ struct EventListView: View {
         ZStack {
             HStack(
                 alignment: .center,
-                spacing: 0,
+                spacing: UICons.zeroSpacingForStack,
                 content: {
                     Button {
                         isFinished ?

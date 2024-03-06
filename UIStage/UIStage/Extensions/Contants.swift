@@ -10,7 +10,7 @@ import SwiftUI
 enum UICons {
 
     // MARK: - Global constants
-    static let zeroSpacingForVStack: CGFloat = 0
+    static let zeroSpacingForStack: CGFloat = 0
 
     // MARK: - SplashScreen constants
     static let logoAspectRatio: CGFloat = 247 / 74

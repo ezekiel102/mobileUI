@@ -11,10 +11,13 @@ import SwiftUI
 struct UIStageApp: App {
 
     @StateObject private var viewModel = ViewModel()
+    @StateObject private var viewCoordinator = ViewCoordinator()
 
     var body: some Scene {
         WindowGroup {
-            ContentView(viewModel: viewModel)
+            ContentView()
+                .environmentObject(viewCoordinator)
+                .environmentObject(viewModel)
         }
     }
 }

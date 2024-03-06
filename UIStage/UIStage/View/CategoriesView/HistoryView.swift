@@ -9,13 +9,14 @@ import SwiftUI
 
 struct HistoryView: View {
 
-    let historyTabBarView: TabBarNavigation = .news
-    @ObservedObject var viewModel: ViewModel
+    @EnvironmentObject var viewModel: ViewModel
+
+    let historyTabBarView: MainTabBarNavigation = .history
 
     var body: some View {
         NavigationStack {
             VStack(
-                spacing: UICons.zeroSpacingForVStack,
+                spacing: UICons.zeroSpacingForStack,
                 content: {
                     NavigationBar(category: historyTabBarView.name, action: { exit(1) })
                     ZStack {
@@ -28,6 +29,6 @@ struct HistoryView: View {
 
 struct HistoryView_Previews: PreviewProvider {
     static var previews: some View {
-        HistoryView(viewModel: ViewModel())
+        HistoryView()
     }
 }

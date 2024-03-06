@@ -12,7 +12,7 @@ struct SplashScreen: View {
         ZStack {
             Color.paleGrey
                 .ignoresSafeArea()
-            VStack(spacing: UICons.zeroSpacingForVStack) {
+            VStack(spacing: UICons.zeroSpacingForStack) {
                 Spacer()
                 Image("logo")
                     .resizable()
