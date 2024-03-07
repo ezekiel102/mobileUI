@@ -106,7 +106,11 @@ struct MainTabItem: View {
 }
 
 struct TabBarView_Previews: PreviewProvider {
+
+    static let viewCoordinator = ViewCoordinator()
+
     static var previews: some View {
         MainTabBarView()
+            .environmentObject(viewCoordinator)
     }
 }

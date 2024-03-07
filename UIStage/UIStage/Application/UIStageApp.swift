@@ -10,8 +10,8 @@ import SwiftUI
 @main
 struct UIStageApp: App {
 
-    @StateObject private var viewModel = ViewModel()
-    @StateObject private var viewCoordinator = ViewCoordinator()
+    private let viewModel = ViewModel()
+    private let viewCoordinator = ViewCoordinator()
 
     var body: some Scene {
         WindowGroup {

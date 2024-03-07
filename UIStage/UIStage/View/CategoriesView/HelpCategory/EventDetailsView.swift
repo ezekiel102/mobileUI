@@ -125,7 +125,6 @@ struct EventDetailsView: View {
             Image("image1")
                 .resizable()
                 .scaledToFit()
-                .frame(height: 168)
             VStack(spacing: 10) {
                 Image("image2")
                     .resizable()
@@ -138,8 +137,8 @@ struct EventDetailsView: View {
             }
             .fixedSize()
         }
+        .frame(height: 168)
         .frame(maxWidth: .infinity)
-//        .padding(.horizontal, 20)
     }
 
     var description: some View {

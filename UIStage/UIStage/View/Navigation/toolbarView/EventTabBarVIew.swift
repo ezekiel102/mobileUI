@@ -33,9 +33,9 @@ struct EventTabBarView: View {
                 Divider()
                 Spacer()
             }
-            .frame(height: 35)
+            .frame(height: UICons.eventDividerHeight)
         }
-        .frame(height: 69)
+        .frame(height: UICons.eventTabBarHeight)
         .background {
             Color.offWhite
                 .ignoresSafeArea()

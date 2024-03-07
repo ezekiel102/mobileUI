@@ -25,14 +25,19 @@ enum UICons {
     // MARK: - NavigationBar constants
     static let leadingPaddingBackButton: CGFloat = 19
     static let navigationBarFrameHeight: CGFloat = 44
+    static let navigationTitleFrameWidth: CGFloat = 228
 
-    // MARK: - TabBar constants
+    // MARK: - MainTabBar constants
     static let tabBarHeight: CGFloat = 49
     static let circleDiametr: CGFloat = 42
     static let arcDiametr: CGFloat = 54
     static let bottomPaddingBarText: CGFloat = 4
     static let topPaddingBarImage: CGFloat = 8
     static let helpButtonOffset: CGFloat = -12.5
+
+    // MARK: - EventTabBar constants
+    static let eventTabBarHeight: CGFloat = 69
+    static let eventDividerHeight: CGFloat = 35
 
     // MARK: - LazyVGrid HelpCategories constants
     static let topPaddingHeaderText: CGFloat = 20
@@ -45,4 +50,5 @@ enum UICons {
     static let categoryImageFrameHeight: CGFloat = 160
     static let bottomPaddingText: CGFloat = 10
 
+    // MARK: - EventListView constants
 }

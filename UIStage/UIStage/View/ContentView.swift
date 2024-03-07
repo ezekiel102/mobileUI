@@ -36,7 +36,6 @@ struct ContentView: View {
         VStack(spacing: UICons.zeroSpacingForStack) {
             viewCoordinator.mainView
             viewCoordinator.tabBarView
-
         }
     }
 }
