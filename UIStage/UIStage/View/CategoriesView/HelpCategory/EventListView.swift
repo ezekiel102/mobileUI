@@ -44,7 +44,7 @@ struct EventListView: View {
                         EventPreview()
                     }
                 }
-                .padding(.top, 10)
+                .padding(.top, UICons.topPaddingEventList)
             }
         }
         .toolbar(.hidden)
@@ -63,7 +63,8 @@ struct EventListView: View {
                         Text("Текущие")
                             .font(.textStyle9)
                             .foregroundColor(isFinished ? .leaf : .white)
-                            .frame(maxWidth: .infinity, minHeight: 23.5)
+                            .frame(maxWidth: .infinity,
+                                   minHeight: UICons.calendarFrameHeight)
                     }
                     .background(!isFinished ? Color.leaf : .white)
                     Button {
@@ -73,7 +74,8 @@ struct EventListView: View {
                         Text("Завершенные")
                             .font(.textStyle9)
                             .foregroundColor(!isFinished ? .leaf : .white)
-                            .frame(maxWidth: .infinity, minHeight: 23.5)
+                            .frame(maxWidth: .infinity,
+                                   minHeight: UICons.calendarFrameHeight)
                     }
                     .background(isFinished ? Color.leaf : .white)
                 })
@@ -81,7 +83,7 @@ struct EventListView: View {
             .cornerRadius(4.0)
             .padding(.horizontal)
         }
-        .frame(height: 43)
+        .frame(height: UICons.headerFrameHeight)
         .frame(maxWidth: .infinity)
         .shadow(color: .whiteThree, radius: 0.0, x: 0.0, y: 0.5)
         .background {

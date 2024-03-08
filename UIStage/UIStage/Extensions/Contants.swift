@@ -51,4 +51,15 @@ enum UICons {
     static let bottomPaddingText: CGFloat = 10
 
     // MARK: - EventListView constants
+    static let topPaddingEventList: CGFloat = 10
+    static let calendarFrameHeight: CGFloat = 23.5
+    static let headerFrameHeight: CGFloat = 43
+
+    // MARK: - EventDetaulsView constants
+    static let bottomPaddingTitle: CGFloat = 17
+    static let bottomPaddingSubTitle: CGFloat = 15
+    static let bottomPaddingTextVStack: CGFloat = 16
+    static let bottomPaddingImageGroup: CGFloat = 10
+    static let bottomPaddingDescription: CGFloat = 16
+    static let topHorizontalPadding: CGFloat = 20
 }

@@ -23,19 +23,19 @@ struct EventDetailsView: View {
                 VStack(alignment: .leading,
                        spacing: UICons.zeroSpacingForStack) {
                     title
-                        .padding(.bottom, 17)
+                        .padding(.bottom, UICons.bottomPaddingTitle)
                     subtitle
-                        .padding(.bottom, 15)
+                        .padding(.bottom, UICons.bottomPaddingSubTitle)
                     textVStack
-                        .padding(.bottom, 16)
+                        .padding(.bottom, UICons.bottomPaddingTextVStack)
                     imageGroup
-                        .padding(.bottom, 10)
+                        .padding(.bottom, UICons.bottomPaddingImageGroup)
                     description
-                        .padding(.bottom, 16)
+                        .padding(.bottom, UICons.bottomPaddingDescription)
                     link
                 }
-                       .padding(.top, 20)
-                       .padding(.horizontal, 20)
+                       .padding(.top, UICons.topHorizontalPadding)
+                       .padding(.horizontal, UICons.topHorizontalPadding)
             }
             avatarsStack
         })
