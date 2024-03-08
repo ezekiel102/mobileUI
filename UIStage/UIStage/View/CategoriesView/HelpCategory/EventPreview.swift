@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct EventPreview: View {
+
+    let event: Event
+
     var body: some View {
         ZStack {
             VStack(spacing: UICons.zeroSpacingForStack) {
@@ -29,7 +32,7 @@ struct EventPreview: View {
     var image: some View {
         ZStack {
             VStack {
-                Image("kidEvent")
+                Image(event.previewImage)
                     .resizable()
                     .scaledToFit()
                     .padding(4)
@@ -47,7 +50,7 @@ struct EventPreview: View {
     var text: some View {
         VStack {
             Spacer()
-            Text("Спонсоры отремонтируют школу-интернат")
+            Text(event.title)
                 .font(.textStyle)
                 .multilineTextAlignment(.center)
                 .foregroundColor(.blueGrey)
@@ -56,7 +59,7 @@ struct EventPreview: View {
                 .scaledToFit()
                 .aspectRatio(CGFloat(113/20), contentMode: .fit)
                 .padding(.horizontal, 123)
-            Text("Дубовская школа-интернат для детей с ограниченными возможностями здоровья стала первой в области …")
+            Text(event.previewDescription)
                 .font(.textStyle4)
                 .multilineTextAlignment(.center)
                 .foregroundColor(.darkSlateBlue)
@@ -70,7 +73,7 @@ struct EventPreview: View {
                 .opacity(0.85)
             HStack {
                 Image("shape")
-                Text("Осталось 13 дней (21.09 – 20.10)")
+                Text("Осталось \(event.days) дней (\(event.dateInterval))")
                     .foregroundColor(.white)
                     .font(.textStyle17)
             }
@@ -78,8 +81,8 @@ struct EventPreview: View {
     }
 }
 
-struct EventPreview_Previews: PreviewProvider {
-    static var previews: some View {
-        EventPreview()
-    }
-}
+//struct EventPreview_Previews: PreviewProvider {
+//    static var previews: some View {
+//        EventPreview(event: Event)
+//    }
+//}

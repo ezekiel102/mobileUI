@@ -12,7 +12,8 @@ struct EventDetailsView: View {
     @EnvironmentObject var viewCoordinator: ViewCoordinator
     @Environment(\.dismiss) var dismiss
 
-    let personLogo: [String] = ["photo1", "photo2", "photo3", "photo4", "photo5"]
+//    let personLogo: [String] = ["photo1", "photo2", "photo3", "photo4", "photo5"]
+    let event: Event
 
     var body: some View {
         VStack(alignment: .leading,
@@ -45,7 +46,7 @@ struct EventDetailsView: View {
         .toolbar(.hidden)
     }
     var navigationBar: some View {
-        NavigationBar(category: "Спонсоры отремонитируют школу-интернат",
+        NavigationBar(title: event.title,
                       action: {
             dismiss()
             viewCoordinator.currentTabBarView = .mainTabBarNavigation
@@ -64,7 +65,7 @@ struct EventDetailsView: View {
     }
 
     var title: some View {
-        Text("Спонсоры отремонтируют школу-интернат")
+        Text(event.title)
             .font(.textStyle3)
             .foregroundColor(.blueGrey)
     }
@@ -79,7 +80,7 @@ struct EventDetailsView: View {
                     .foregroundColor(.grey)
                     .font(.textStyle17)
             }
-            Text("Благотворительный фонд «Счастливый Мир»")
+            Text(event.owner)
                 .font(.textStyle12)
                 .foregroundColor(.charcoalGrey)
         })
@@ -91,19 +92,17 @@ struct EventDetailsView: View {
                content: {
             HStack(spacing: 9) {
                 Image("iconNav")
-                Text("""
-                 Санкт-Петербург, Кирочная улица,
-                 д. 50А, каб. 208
-                 """)
+                Text(event.location)
                 .foregroundColor(.charcoalGrey)
                 .font(.textStyle7)
             }
-            HStack(spacing: 9) {
+            HStack(alignment: .top, spacing: 9) {
                 Image("iconPhone")
-                Text("""
-                 +7 (937) 037 37-73
-                 +7 (937) 016 16-16
-                 """)
+                VStack {
+                    ForEach(0..<event.contacts.count) { item in
+                        Text("\(event.contacts[item])")
+                    }
+                }
                 .foregroundColor(.charcoalGrey)
                 .font(.textStyle7)
             }
@@ -122,18 +121,16 @@ struct EventDetailsView: View {
 
     var imageGroup: some View {
         HStack(spacing: 10) {
-            Image("image1")
+            Image(event.mainImage)
                 .resizable()
                 .scaledToFit()
             VStack(spacing: 10) {
-                Image("image2")
-                    .resizable()
-                    .scaledToFit()
-                    .aspectRatio(CGFloat(103/79), contentMode: .fit)
-                Image("image3")
-                    .resizable()
-                    .scaledToFit()
-                    .aspectRatio(CGFloat(103/79), contentMode: .fit)
+                ForEach(0..<event.secondaryImage.count) { image in
+                    Image(event.secondaryImage[image])
+                        .resizable()
+                        .scaledToFit()
+                        .aspectRatio(CGFloat(103/79), contentMode: .fit)
+                }
             }
             .fixedSize()
         }
@@ -143,19 +140,12 @@ struct EventDetailsView: View {
 
     var description: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text("""
-                    Участники и болельщики смогли весело и
-                    активно провести время на «Петербургском
-                    благотворительном марафоне» и при этом
-                    финансово поучаствовать в помощи детям.
-                    """)
-            .frame(height: 80)
-            Text("""
-                    При этом финансово поучаствовать
-                    в помощи детям. При этом финансово
-                    поучаствовать в помощи детям.
-                    """)
-            .frame(height: 60)
+            Text(event.description)
+                .lineLimit(4)
+                .frame(height: 80)
+            Text(event.description)
+                .lineLimit(3)
+                .frame(height: 60)
         }
         .foregroundColor(.charcoalGrey)
         .font(.textStyle7)
@@ -174,8 +164,8 @@ struct EventDetailsView: View {
         HStack(alignment: .center,
                spacing: UICons.zeroSpacingForStack,
                content: {
-            ForEach(personLogo, id: \.self) {
-                Image($0)
+            ForEach(event.participants, id: \.self) {
+                Image($0.photo)
                     .resizable()
                     .scaledToFit()
             }
@@ -194,12 +184,12 @@ struct EventDetailsView: View {
     }
 }
 
-struct EventDetailsView_Previews: PreviewProvider {
-
-    static let viewCoordinator = ViewCoordinator()
-
-    static var previews: some View {
-        EventDetailsView()
-            .environmentObject(viewCoordinator)
-    }
-}
+//struct EventDetailsView_Previews: PreviewProvider {
+//
+//    static let viewCoordinator = ViewCoordinator()
+//
+//    static var previews: some View {
+//        EventDetailsView(event: Event)
+//            .environmentObject(viewCoordinator)
+//    }
+//}

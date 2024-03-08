@@ -26,7 +26,7 @@ struct HelpView: View {
             VStack(
                 spacing: UICons.zeroSpacingForStack,
                 content: {
-                    NavigationBar(category: helpTabBarView.name, action: { exit(1) })
+                    NavigationBar(title: helpTabBarView.name, action: { exit(1) })
                     ScrollView {
                         LazyVGrid(columns: columns,
                                   spacing: UICons.lazyVGridRowSpacing,

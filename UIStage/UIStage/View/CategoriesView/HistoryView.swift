@@ -18,7 +18,7 @@ struct HistoryView: View {
             VStack(
                 spacing: UICons.zeroSpacingForStack,
                 content: {
-                    NavigationBar(category: historyTabBarView.name, action: { exit(1) })
+                    NavigationBar(title: historyTabBarView.name, action: { exit(1) })
                     ZStack {
                         Color.yellow
                     }

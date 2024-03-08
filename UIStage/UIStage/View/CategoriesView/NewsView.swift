@@ -18,7 +18,7 @@ struct NewsView: View {
             VStack(
                 spacing: UICons.zeroSpacingForStack,
                 content: {
-                    NavigationBar(category: newsTabBarView.name, action: { exit(1) })
+                    NavigationBar(title: newsTabBarView.name, action: { exit(1) })
                     ZStack {
                         Color.blue
                     }

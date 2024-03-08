@@ -9,7 +9,7 @@ import SwiftUI
 
 struct NavigationBar: View {
 
-    let category: String
+    let title: String
     var action: () -> Void
 
     var body: some View {
@@ -28,7 +28,7 @@ struct NavigationBar: View {
                         }
                         Spacer()
                     }
-                    Text(category)
+                    Text(title)
                         .font(.textStyle22)
                         .foregroundColor(.white)
                         .lineLimit(1)
@@ -43,6 +43,6 @@ struct NavigationBar: View {
 
 struct NavigationBar_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationBar(category: "Помочь", action: { print(1) })
+        NavigationBar(title: "Помочь", action: { print(1) })
     }
 }

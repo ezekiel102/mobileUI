@@ -11,43 +11,74 @@ struct EventListView: View {
 
     @Environment(\.dismiss) var dismiss
 
-    @State var isFinished: Bool = true
+    @EnvironmentObject var viewModel: ViewModel
 
-    var category: String
-    var isClosed: Bool = true
+    @State var isFinished: Bool = true
+    @State var category: String
 
     var body: some View {
         VStack(spacing: UICons.zeroSpacingForStack) {
-            NavigationBar(category: category, action: { dismiss() })
+            NavigationBar(title: category, action: { dismiss() })
                 .overlay {
-                    HStack {
-                        Spacer()
-                        Button {
-                        } label: {
-                            Image("filter")
-                        }
-                        .padding(.trailing, UICons.leadingPaddingBackButton)
-                    }
+                    filterButton
                 }
             header
             ZStack {
                 Color.lightGrey
-                ScrollView {
-                    NavigationLink {
-                        EventDetailsView()
-                    } label: {
-                        EventPreview()
-                    }
-                    NavigationLink {
-                        EventDetailsView()
-                    } label: {
-                        EventPreview()
-                    }
-                }
-                .padding(.top, UICons.topPaddingEventList)
+                if isFinished {finishedBody} else {notFinishedBody}
             }
         }
         .toolbar(.hidden)
+    }
+
+    var filterButton: some View {
+        HStack {
+            Spacer()
+            Menu {
+                ForEach(viewModel.categories) { item in
+                    Button {
+                        category = item.name
+                    } label: {
+                        Text(item.name)
+                    }
+                }
+            } label: {
+                Image("filter")
+            }
+            .padding(.trailing, UICons.leadingPaddingBackButton)
+        }
+    }
+
+    var notFinishedBody: some View {
+        ScrollView {
+            ForEach(viewModel.eventsList.filter {
+                $0.category.name == category &&
+                $0.currentDate <= $0.dateEnd
+            }) { event in
+                NavigationLink {
+                    EventDetailsView(event: event)
+                } label: {
+                    EventPreview(event: event)
+                }
+            }
+        }
+        .padding(.top, UICons.topPaddingEventList)
+    }
+
+    var finishedBody: some View {
+        ScrollView {
+            ForEach(viewModel.eventsList.filter {
+                $0.category.name == category &&
+                $0.currentDate > $0.dateEnd
+            }) { event in
+                NavigationLink {
+                    EventDetailsView(event: event)
+                } label: {
+                    EventPreview(event: event)
+                }
+            }
+        }
+        .padding(.top, UICons.topPaddingEventList)
     }
 
     var header: some View {
@@ -93,7 +124,11 @@ struct EventListView: View {
 }
 
 struct EView_Previews: PreviewProvider {
+
+    static let viewModel = ViewModel()
+
     static var previews: some View {
         EventListView(category: "Взрослые")
+            .environmentObject(viewModel)
     }
 }

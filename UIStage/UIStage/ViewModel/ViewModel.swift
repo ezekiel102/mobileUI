@@ -9,11 +9,22 @@ import Foundation
 
 class ViewModel: ObservableObject {
 
-    @Published var categories: [HelpCategories] = [
-        HelpCategories(name: "Дети", imageName: "kids"),
-        HelpCategories(name: "Взрослые", imageName: "adults"),
-        HelpCategories(name: "Пожилые", imageName: "grands"),
-        HelpCategories(name: "Животные", imageName: "pets"),
-        HelpCategories(name: "Мероприятия", imageName: "events")]
+    let readOperator = ReadOperator()
 
+    @Published var categories: [HelpCategory] = []
+    @Published var eventsList: [Event] = []
+
+    init() {
+        self.categories = self.readOperator.loadHelpCategoriesList("HelpCategories")
+        self.eventsList = self.readOperator.loadEventsList("Events")
+        print(eventsList)
+    }
+
+    func updateHelpCatrgoriesList() {
+        self.categories = self.readOperator.loadHelpCategoriesList("HelpCategories")
+    }
+
+    func updateEventsList() {
+        self.eventsList = self.readOperator.loadEventsList("Events")
+    }
 }

@@ -18,7 +18,7 @@ struct ProfileView: View {
             VStack(
                 spacing: UICons.zeroSpacingForStack,
                 content: {
-                    NavigationBar(category: profileTabBarView.name, action: { exit(1) })
+                    NavigationBar(title: profileTabBarView.name, action: { exit(1) })
                     ZStack {
                         Color.purple
                     }

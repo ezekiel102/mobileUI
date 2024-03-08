@@ -18,7 +18,7 @@ struct SearchView: View {
             VStack(
                 spacing: UICons.zeroSpacingForStack,
                 content: {
-                    NavigationBar(category: searchTabBarView.name, action: { exit(1) })
+                    NavigationBar(title: searchTabBarView.name, action: { exit(1) })
                     ZStack {
                         Color.green
                     }
