@@ -62,4 +62,5 @@ enum UICons {
     static let bottomPaddingImageGroup: CGFloat = 10
     static let bottomPaddingDescription: CGFloat = 16
     static let topHorizontalPadding: CGFloat = 20
+    static let lastParagrahHeight: CGFloat = 60
 }

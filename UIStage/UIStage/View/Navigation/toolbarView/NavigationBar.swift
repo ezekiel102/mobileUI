@@ -33,7 +33,6 @@ struct NavigationBar: View {
                         .foregroundColor(.white)
                         .lineLimit(1)
                         .frame(width: UICons.navigationTitleFrameWidth)
-
                 }
             }
             .frame(height: UICons.navigationBarFrameHeight)

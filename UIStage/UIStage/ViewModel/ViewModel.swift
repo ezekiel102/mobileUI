@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import UIKit
+import SwiftUI
 
 class ViewModel: ObservableObject {
 
@@ -15,16 +17,19 @@ class ViewModel: ObservableObject {
     @Published var eventsList: [Event] = []
 
     init() {
-        self.categories = self.readOperator.loadHelpCategoriesList("HelpCategories")
-        self.eventsList = self.readOperator.loadEventsList("Events")
-        print(eventsList)
+        self.categories = self.readOperator.readListFromJSON("HelpCategories")
+        self.eventsList = self.readOperator.readListFromJSON("Events")
     }
 
-    func updateHelpCatrgoriesList() {
-        self.categories = self.readOperator.loadHelpCategoriesList("HelpCategories")
+    func updateList(list: String) {
+        self.categories = self.readOperator.readListFromJSON(list)
     }
 
-    func updateEventsList() {
-        self.eventsList = self.readOperator.loadEventsList("Events")
+    func filterEventsList(isFinished: Bool = false, category: String) -> [Event] {
+        if isFinished {
+            return self.eventsList.filter { $0.category.name == category && $0.isFinished}
+        } else {
+            return self.eventsList.filter { $0.category.name == category && !$0.isFinished}
+        }
     }
 }

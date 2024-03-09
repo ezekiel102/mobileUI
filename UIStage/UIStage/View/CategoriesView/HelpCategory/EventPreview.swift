@@ -73,16 +73,22 @@ struct EventPreview: View {
                 .opacity(0.85)
             HStack {
                 Image("shape")
-                Text("Осталось \(event.days) дней (\(event.dateInterval))")
-                    .foregroundColor(.white)
-                    .font(.textStyle17)
+                if event.isFinished {
+                    Text("Событие закончилось")
+                } else {
+                    switch event.days {
+                    case 1:
+                        Text("Событие заканчивается завтра")
+                    case 0:
+                        Text("Событие заканчивается сегодня")
+                    default:
+                        Text("Осталось \(event.days) дней (\(event.dateInterval))")
+                    }
+                }
             }
+            .foregroundColor(.white)
+            .font(.textStyle17)
+            .lineLimit(1)
         }
     }
 }
-
-//struct EventPreview_Previews: PreviewProvider {
-//    static var previews: some View {
-//        EventPreview(event: Event)
-//    }
-//}

@@ -34,11 +34,17 @@ struct Event: Identifiable, Codable {
     let participants: [Participants]
 
     var days: Int {
-        Int((self.dateEnd.timeIntervalSince1970 - self.currentDate.timeIntervalSince1970)/3600/24)
+        Int((dateEnd.timeIntervalSince1970 - currentDate.timeIntervalSince1970)/3600/24)
     }
+
     var currentDate: Date {
         Date()
     }
+
+    var isFinished: Bool {
+        currentDate > dateEnd
+    }
+
     var dateInterval: String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM"

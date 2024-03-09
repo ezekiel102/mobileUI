@@ -13,8 +13,9 @@ struct EventListView: View {
 
     @EnvironmentObject var viewModel: ViewModel
 
-    @State var isFinished: Bool = true
+    @State var isFinished: Bool = false
     @State var category: String
+    @State var list: [Event] = []
 
     var body: some View {
         VStack(spacing: UICons.zeroSpacingForStack) {
@@ -25,7 +26,24 @@ struct EventListView: View {
             header
             ZStack {
                 Color.lightGrey
-                if isFinished {finishedBody} else {notFinishedBody}
+                ScrollView {
+                    ForEach(list) { event in
+                        NavigationLink {
+                            EventDetailsView(event: event)
+                        } label: {
+                            EventPreview(event: event)
+                        }
+                    }
+                }
+                .padding(.top, UICons.topPaddingEventList)
+                .onAppear {
+                    list = viewModel.filterEventsList(isFinished: isFinished,
+                                                      category: category)
+                }
+                .onChange(of: isFinished) { newValue in
+                    list = viewModel.filterEventsList(isFinished: newValue,
+                                                      category: category)
+                }
             }
         }
         .toolbar(.hidden)
@@ -38,6 +56,8 @@ struct EventListView: View {
                 ForEach(viewModel.categories) { item in
                     Button {
                         category = item.name
+                        list = viewModel.filterEventsList(isFinished: isFinished,
+                                                          category: category)
                     } label: {
                         Text(item.name)
                     }
@@ -47,38 +67,6 @@ struct EventListView: View {
             }
             .padding(.trailing, UICons.leadingPaddingBackButton)
         }
-    }
-
-    var notFinishedBody: some View {
-        ScrollView {
-            ForEach(viewModel.eventsList.filter {
-                $0.category.name == category &&
-                $0.currentDate <= $0.dateEnd
-            }) { event in
-                NavigationLink {
-                    EventDetailsView(event: event)
-                } label: {
-                    EventPreview(event: event)
-                }
-            }
-        }
-        .padding(.top, UICons.topPaddingEventList)
-    }
-
-    var finishedBody: some View {
-        ScrollView {
-            ForEach(viewModel.eventsList.filter {
-                $0.category.name == category &&
-                $0.currentDate > $0.dateEnd
-            }) { event in
-                NavigationLink {
-                    EventDetailsView(event: event)
-                } label: {
-                    EventPreview(event: event)
-                }
-            }
-        }
-        .padding(.top, UICons.topPaddingEventList)
     }
 
     var header: some View {

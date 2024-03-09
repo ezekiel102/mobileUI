@@ -16,21 +16,11 @@ struct ReadOperator {
 
     let decoder: JSONDecoder
 
-    func loadHelpCategoriesList(_ file: String) -> [HelpCategory] {
+    func readListFromJSON<T: Codable>(_ file: String) -> [T] {
         let path = Bundle.main.path(forResource: file, ofType: "json")!
         let data = FileManager.default.contents(atPath: path)!
-        let helpCategoriesList = try! decoder.decode([HelpCategory].self, from: data)
-        return helpCategoriesList
+        let list = try! decoder.decode([T].self, from: data)
+        return list
     }
-
-    func loadEventsList(_ file: String) -> [Event] {
-        let path = Bundle.main.path(forResource: file, ofType: "json")!
-        let data = FileManager.default.contents(atPath: path)!
-        let eventsList = try! decoder.decode([Event].self, from: data)
-        return eventsList
-    }
-}
-
-extension JSONDecoder {
 
 }

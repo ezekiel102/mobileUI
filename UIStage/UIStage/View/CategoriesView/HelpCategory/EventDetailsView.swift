@@ -12,7 +12,6 @@ struct EventDetailsView: View {
     @EnvironmentObject var viewCoordinator: ViewCoordinator
     @Environment(\.dismiss) var dismiss
 
-//    let personLogo: [String] = ["photo1", "photo2", "photo3", "photo4", "photo5"]
     let event: Event
 
     var body: some View {
@@ -34,6 +33,7 @@ struct EventDetailsView: View {
                     description
                         .padding(.bottom, UICons.bottomPaddingDescription)
                     link
+                        .padding(.bottom, 32)
                 }
                        .padding(.top, UICons.topHorizontalPadding)
                        .padding(.horizontal, UICons.topHorizontalPadding)
@@ -76,10 +76,22 @@ struct EventDetailsView: View {
                content: {
             HStack(spacing: 10) {
                 Image("iconCal")
-                Text("Осталось 13 дней (21.09 – 20.10)")
-                    .foregroundColor(.grey)
-                    .font(.textStyle17)
+                if event.isFinished {
+                    Text("Событие закончилось")
+                } else {
+                    switch event.days {
+                    case 1:
+                        Text("Событие заканчивается завтра")
+                    case 0:
+                        Text("Событие заканчивается сегодня")
+                    default:
+                        Text("Осталось \(event.days) дней (\(event.dateInterval))")
+                    }
+                }
             }
+            .foregroundColor(.grey)
+            .font(.textStyle18)
+            .lineLimit(1)
             Text(event.owner)
                 .font(.textStyle12)
                 .foregroundColor(.charcoalGrey)
@@ -98,7 +110,7 @@ struct EventDetailsView: View {
             }
             HStack(alignment: .top, spacing: 9) {
                 Image("iconPhone")
-                VStack {
+                VStack(alignment: .leading) {
                     ForEach(0..<event.contacts.count) { item in
                         Text("\(event.contacts[item])")
                     }
@@ -140,12 +152,14 @@ struct EventDetailsView: View {
 
     var description: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text(event.description)
-                .lineLimit(4)
-                .frame(height: 80)
-            Text(event.description)
-                .lineLimit(3)
-                .frame(height: 60)
+            if lastParagrahSize(str: event.description) != nil {
+                Text(firstParagrahSize(str: event.description)!)
+                Text(lastParagrahSize(str: event.description)!)
+                    .lineLimit(3)
+                    .frame(height: 60)
+            } else {
+                Text(event.description)
+            }
         }
         .foregroundColor(.charcoalGrey)
         .font(.textStyle7)
@@ -154,42 +168,81 @@ struct EventDetailsView: View {
     }
 
     var link: some View {
-        Text("Перейти на сайт организаии")
-            .underline()
-            .foregroundColor(.leaf)
-            .font(.textStyle5)
+        Link(destination: event.link, label: {
+            Text("Перейти на сайт организаии")
+                .underline()
+                .foregroundColor(.leaf)
+                .font(.textStyle5)
+        })
     }
 
     var avatarsStack: some View {
         HStack(alignment: .center,
                spacing: UICons.zeroSpacingForStack,
                content: {
-            ForEach(event.participants, id: \.self) {
-                Image($0.photo)
-                    .resizable()
-                    .scaledToFit()
-            }
-            .frame(height: 36)
-            Text("+102")
-                .font(.textStyle11)
-                .foregroundColor(.grey)
+            if event.participants.count > 5 {
+                let lastParticipants = event.participants.reversed()[0...4]
+                ForEach(lastParticipants, id: \.self) {
+                    Image($0.photo)
+                        .resizable()
+                        .scaledToFit()
+                }
+                .frame(height: 36)
+                Text("+\(event.participants.count - 5)")
+                    .font(.textStyle11)
+                    .foregroundColor(.grey)
                     .padding(.leading, 10)
-            Spacer()
+                Spacer()
+            } else {
+                ForEach(event.participants, id: \.self) {
+                    Image($0.photo)
+                        .resizable()
+                        .scaledToFit()
+                }
+                .frame(height: 36)
+                Spacer()
+            }
         })
             .padding(.leading, 20)
-        .frame(maxWidth: .infinity)
-        .frame(height: 68)
-        .background(Color.lightGrey)
-        .shadow(color: .black20, radius: 2.0, x: 0.0, y: 2.0)
+            .frame(maxWidth: .infinity)
+            .frame(height: 68)
+            .background(Color.lightGrey)
+            .shadow(color: .black20, radius: 2.0, x: 0.0, y: 2.0)
+    }
+
+    func lastParagrahSize(str: String) -> String? {
+        let font = UIFont.systemFont(ofSize: 15.0, weight: .regular)
+        let fontAttribute = [NSAttributedString.Key.font: font]
+        let size = str.size(withAttributes: fontAttribute)
+        let count = CGFloat(str.count)
+        let fontWidth = size.width / count
+        let fontHeight = size.height
+        let countOfLines = round(UICons.lastParagrahHeight / fontHeight)
+        let charInLine = round((UIScreen.main.bounds.width - UICons.topHorizontalPadding) / fontWidth)
+        let charInLastParagrah = charInLine * countOfLines
+        for ind in (Int(count) - Int(charInLastParagrah) - 1)..<Int(count) {
+            if str[str.index(str.startIndex, offsetBy: ind)] == "." {
+                return "\(str[str.index(str.startIndex, offsetBy: ind + 2)...str.index(str.endIndex, offsetBy: -1)])"
+            }
+        }
+        return nil
+    }
+
+    func firstParagrahSize(str: String) -> String? {
+        let font = UIFont.systemFont(ofSize: 15.0, weight: .regular)
+        let fontAttribute = [NSAttributedString.Key.font: font]
+        let size = str.size(withAttributes: fontAttribute)
+        let count = CGFloat(str.count)
+        let fontWidth = size.width / count
+        let fontHeight = size.height
+        let countOfLines = round(UICons.lastParagrahHeight / fontHeight)
+        let charInLine = round((UIScreen.main.bounds.width - UICons.topHorizontalPadding) / fontWidth)
+        let charInLastParagrah = charInLine * countOfLines
+        for ind in (Int(count) - Int(charInLastParagrah) - 1)..<Int(count) {
+            if str[str.index(str.startIndex, offsetBy: ind)] == "." {
+                return "\(str[str.startIndex...str.index(str.startIndex, offsetBy: ind)])"
+            }
+        }
+        return nil
     }
 }
-
-//struct EventDetailsView_Previews: PreviewProvider {
-//
-//    static let viewCoordinator = ViewCoordinator()
-//
-//    static var previews: some View {
-//        EventDetailsView(event: Event)
-//            .environmentObject(viewCoordinator)
-//    }
-//}
