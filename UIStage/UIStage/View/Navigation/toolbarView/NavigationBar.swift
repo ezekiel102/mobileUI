@@ -24,7 +24,7 @@ struct NavigationBar: View {
                             Image(systemName: "chevron.left")
                                 .font(.textStyle22)
                                 .foregroundColor(.white)
-                                .padding(.leading, UICons.leadingPaddingBackButton)
+                                .padding(.leading, UICons.trailingPaddingRightItemsNavBar)
                         }
                         Spacer()
                     }

@@ -26,17 +26,17 @@ struct EventDetailsView: View {
                         .padding(.bottom, UICons.bottomPaddingTitle)
                     subtitle
                         .padding(.bottom, UICons.bottomPaddingSubTitle)
-                    textVStack
+                    informationText
                         .padding(.bottom, UICons.bottomPaddingTextVStack)
                     imageGroup
                         .padding(.bottom, UICons.bottomPaddingImageGroup)
                     description
                         .padding(.bottom, UICons.bottomPaddingDescription)
                     link
-                        .padding(.bottom, 32)
+                        .padding(.bottom, UICons.bottomLastParagrahPadding)
                 }
-                       .padding(.top, UICons.topHorizontalPadding)
-                       .padding(.horizontal, UICons.topHorizontalPadding)
+                       .padding(.top, UICons.topPaddingScrollView)
+                       .padding(.horizontal, UICons.horizontalPaddingScrollView)
             }
             avatarsStack
         })
@@ -55,11 +55,10 @@ struct EventDetailsView: View {
                 HStack {
                     Spacer()
                     Button {
-                        print(2)
                     } label: {
                         Image("iconShare")
                     }
-                    .padding(.trailing, UICons.leadingPaddingBackButton)
+                    .padding(.trailing, UICons.leadingPaddingLeftItemsNavBar)
                 }
             }
     }
@@ -72,9 +71,9 @@ struct EventDetailsView: View {
 
     var subtitle: some View {
         VStack(alignment: .leading,
-               spacing: 10,
+               spacing: UICons.subtitleVStackSpacing,
                content: {
-            HStack(spacing: 10) {
+            HStack(spacing: UICons.subtitleHStackSpacing) {
                 Image("iconCal")
                 if event.isFinished {
                     Text("Событие закончилось")
@@ -98,27 +97,27 @@ struct EventDetailsView: View {
         })
     }
 
-    var textVStack: some View {
+    var informationText: some View {
         VStack(alignment: .leading,
-               spacing: 16,
+               spacing: UICons.informationTextVStackSpacing,
                content: {
-            HStack(spacing: 9) {
+            HStack(spacing: UICons.informationTextHStackSpacings) {
                 Image("iconNav")
                 Text(event.location)
                 .foregroundColor(.charcoalGrey)
                 .font(.textStyle7)
             }
-            HStack(alignment: .top, spacing: 9) {
+            HStack(alignment: .top, spacing: UICons.informationTextHStackSpacings) {
                 Image("iconPhone")
                 VStack(alignment: .leading) {
-                    ForEach(0..<event.contacts.count) { item in
-                        Text("\(event.contacts[item])")
+                    ForEach(event.contacts, id: \.self) {
+                        Text($0)
                     }
                 }
                 .foregroundColor(.charcoalGrey)
                 .font(.textStyle7)
             }
-            HStack(spacing: 9) {
+            HStack(spacing: UICons.informationTextHStackSpacings) {
                 Image("mail")
                 Text("У вас есть вопросы?")
                     .foregroundColor(.charcoalGrey)
@@ -132,31 +131,32 @@ struct EventDetailsView: View {
     }
 
     var imageGroup: some View {
-        HStack(spacing: 10) {
+        HStack(spacing: UICons.imageFroupHorizontalSpacing) {
             Image(event.mainImage)
                 .resizable()
                 .scaledToFit()
-            VStack(spacing: 10) {
-                ForEach(0..<event.secondaryImage.count) { image in
-                    Image(event.secondaryImage[image])
+            VStack(spacing: UICons.imageGroupVerticalSpacing) {
+                ForEach(event.secondaryImage, id: \.self) {
+                    Image($0)
                         .resizable()
                         .scaledToFit()
-                        .aspectRatio(CGFloat(103/79), contentMode: .fit)
+                        .aspectRatio(UICons.secondaryImageAspectRatio, contentMode: .fit)
                 }
             }
             .fixedSize()
         }
-        .frame(height: 168)
+        .frame(height: UICons.imageGroupFrameHeight)
         .frame(maxWidth: .infinity)
     }
 
     var description: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            if lastParagrahSize(str: event.description) != nil {
-                Text(firstParagrahSize(str: event.description)!)
-                Text(lastParagrahSize(str: event.description)!)
+        VStack(alignment: .leading, spacing: UICons.descriptionParagrahSpacing) {
+            if let firstParagrah = firstParagrahSize(str: event.description),
+                let lastParagrah = lastParagrahSize(str: event.description) {
+                Text(firstParagrah)
+                Text(lastParagrah)
                     .lineLimit(3)
-                    .frame(height: 60)
+                    .frame(height: UICons.lastParagrahHeight)
             } else {
                 Text(event.description)
             }
@@ -187,11 +187,11 @@ struct EventDetailsView: View {
                         .resizable()
                         .scaledToFit()
                 }
-                .frame(height: 36)
+                .frame(height: UICons.avatarsFrameHeight)
                 Text("+\(event.participants.count - 5)")
                     .font(.textStyle11)
                     .foregroundColor(.grey)
-                    .padding(.leading, 10)
+                    .padding(.leading, UICons.additionalCountLeadingPadding)
                 Spacer()
             } else {
                 ForEach(event.participants, id: \.self) {
@@ -199,26 +199,27 @@ struct EventDetailsView: View {
                         .resizable()
                         .scaledToFit()
                 }
-                .frame(height: 36)
+                .frame(height: UICons.avatarsFrameHeight)
                 Spacer()
             }
         })
-            .padding(.leading, 20)
+        .padding(.leading, UICons.avatarsStackLeadingPadding)
             .frame(maxWidth: .infinity)
-            .frame(height: 68)
+            .frame(height: UICons.avatarsStackFrameHeight)
             .background(Color.lightGrey)
             .shadow(color: .black20, radius: 2.0, x: 0.0, y: 2.0)
     }
 
     func lastParagrahSize(str: String) -> String? {
-        let font = UIFont.systemFont(ofSize: 15.0, weight: .regular)
+        let font = UIFont.systemFont(ofSize: UICons.descriptionTextSize,
+                                     weight: .regular)
         let fontAttribute = [NSAttributedString.Key.font: font]
         let size = str.size(withAttributes: fontAttribute)
         let count = CGFloat(str.count)
         let fontWidth = size.width / count
         let fontHeight = size.height
         let countOfLines = round(UICons.lastParagrahHeight / fontHeight)
-        let charInLine = round((UIScreen.main.bounds.width - UICons.topHorizontalPadding) / fontWidth)
+        let charInLine = round((UIScreen.main.bounds.width - UICons.topPaddingScrollView) / fontWidth)
         let charInLastParagrah = charInLine * countOfLines
         for ind in (Int(count) - Int(charInLastParagrah) - 1)..<Int(count) {
             if str[str.index(str.startIndex, offsetBy: ind)] == "." {
@@ -229,14 +230,15 @@ struct EventDetailsView: View {
     }
 
     func firstParagrahSize(str: String) -> String? {
-        let font = UIFont.systemFont(ofSize: 15.0, weight: .regular)
+        let font = UIFont.systemFont(ofSize: UICons.descriptionTextSize,
+                                     weight: .regular)
         let fontAttribute = [NSAttributedString.Key.font: font]
         let size = str.size(withAttributes: fontAttribute)
         let count = CGFloat(str.count)
         let fontWidth = size.width / count
         let fontHeight = size.height
         let countOfLines = round(UICons.lastParagrahHeight / fontHeight)
-        let charInLine = round((UIScreen.main.bounds.width - UICons.topHorizontalPadding) / fontWidth)
+        let charInLine = round((UIScreen.main.bounds.width - UICons.topPaddingScrollView) / fontWidth)
         let charInLastParagrah = charInLine * countOfLines
         for ind in (Int(count) - Int(charInLastParagrah) - 1)..<Int(count) {
             if str[str.index(str.startIndex, offsetBy: ind)] == "." {

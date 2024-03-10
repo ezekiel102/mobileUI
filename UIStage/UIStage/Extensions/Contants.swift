@@ -23,7 +23,8 @@ enum UICons {
     static let simbirSoftFrameHeight: CGFloat = 16
 
     // MARK: - NavigationBar constants
-    static let leadingPaddingBackButton: CGFloat = 19
+    static let leadingPaddingLeftItemsNavBar: CGFloat = 19
+    static let trailingPaddingRightItemsNavBar: CGFloat = 19
     static let navigationBarFrameHeight: CGFloat = 44
     static let navigationTitleFrameWidth: CGFloat = 228
 
@@ -50,10 +51,18 @@ enum UICons {
     static let categoryImageFrameHeight: CGFloat = 160
     static let bottomPaddingText: CGFloat = 10
 
+    // MARK: - EventPreview constants
+    static let previewFrameHeight: CGFloat = 413
+    static let calendarFrameHeight: CGFloat = 31
+    static let headerFrameHeight: CGFloat = 43
+
     // MARK: - EventListView constants
     static let topPaddingEventList: CGFloat = 10
-    static let calendarFrameHeight: CGFloat = 23.5
-    static let headerFrameHeight: CGFloat = 43
+    static let calendarBottomFrameHeight: CGFloat = 23.5
+    static let heartlineHorizontalPadding: CGFloat = 123
+    static let imageAspectRatio: CGFloat = CGFloat(113/20)
+    static let heartHorizontalPadding: CGFloat = 123
+    static let textBottomPadding: CGFloat = 16
 
     // MARK: - EventDetaulsView constants
     static let bottomPaddingTitle: CGFloat = 17
@@ -61,6 +70,22 @@ enum UICons {
     static let bottomPaddingTextVStack: CGFloat = 16
     static let bottomPaddingImageGroup: CGFloat = 10
     static let bottomPaddingDescription: CGFloat = 16
-    static let topHorizontalPadding: CGFloat = 20
+    static let topPaddingScrollView: CGFloat = 20
+    static let horizontalPaddingScrollView: CGFloat = 20
+    static let subtitleVStackSpacing: CGFloat = 10
+    static let subtitleHStackSpacing: CGFloat = 10
+    static let informationTextVStackSpacing: CGFloat = 16
+    static let informationTextHStackSpacings: CGFloat = 9
+    static let secondaryImageAspectRatio: CGFloat = 103/79
+    static let imageGroupVerticalSpacing: CGFloat = 10
+    static let imageFroupHorizontalSpacing: CGFloat = 10
+    static let imageGroupFrameHeight: CGFloat = 168
     static let lastParagrahHeight: CGFloat = 60
+    static let bottomLastParagrahPadding: CGFloat = 32
+    static let descriptionParagrahSpacing: CGFloat = 10
+    static let additionalCountLeadingPadding: CGFloat = 10
+    static let avatarsStackLeadingPadding: CGFloat = 20
+    static let avatarsFrameHeight: CGFloat = 36
+    static let avatarsStackFrameHeight: CGFloat = 68
+    static let descriptionTextSize: CGFloat = 15
 }

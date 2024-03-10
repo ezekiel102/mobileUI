@@ -65,7 +65,7 @@ struct EventListView: View {
             } label: {
                 Image("filter")
             }
-            .padding(.trailing, UICons.leadingPaddingBackButton)
+            .padding(.trailing, UICons.leadingPaddingLeftItemsNavBar)
         }
     }
 

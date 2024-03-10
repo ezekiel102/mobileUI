@@ -11,25 +11,33 @@ import SwiftUI
 
 class ViewModel: ObservableObject {
 
-    let readOperator = ReadOperator()
+    private let readOperator = ReadOperator()
 
     @Published var categories: [HelpCategory] = []
     @Published var eventsList: [Event] = []
 
     init() {
-        self.categories = self.readOperator.readListFromJSON("HelpCategories")
-        self.eventsList = self.readOperator.readListFromJSON("Events")
+        do {
+            self.categories = try self.readOperator.readListFromJSON("HelpCategories")
+        } catch {
+            print("Categories load error: \(error)")
+        }
+        do {
+            self.eventsList = try self.readOperator.readListFromJSON("Events")
+        } catch {
+            print("Events list load error: \(error)")
+        }
     }
 
     func updateList(list: String) {
-        self.categories = self.readOperator.readListFromJSON(list)
+        do {
+            self.categories = try self.readOperator.readListFromJSON(list)
+        } catch {
+            print(error)
+        }
     }
 
     func filterEventsList(isFinished: Bool = false, category: String) -> [Event] {
-        if isFinished {
-            return self.eventsList.filter { $0.category.name == category && $0.isFinished}
-        } else {
-            return self.eventsList.filter { $0.category.name == category && !$0.isFinished}
-        }
+        self.eventsList.filter { $0.category.name == category && $0.isFinished == isFinished }
     }
 }

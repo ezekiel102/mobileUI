@@ -19,14 +19,14 @@ struct EventPreview: View {
                     text
                 }
                 calendar
-                .frame(height: 31.0)
+                    .frame(height: UICons.calendarBottomFrameHeight)
             }
         }
         .background(.white)
         .cornerRadius(5.0)
         .shadow(color: .black20, radius: 2.0, x: 0.0, y: 1.0)
         .padding(.horizontal, 8)
-        .frame(height: 413.0)
+        .frame(height: UICons.previewFrameHeight)
     }
 
     var image: some View {
@@ -57,14 +57,14 @@ struct EventPreview: View {
             Image("heartinline")
                 .resizable()
                 .scaledToFit()
-                .aspectRatio(CGFloat(113/20), contentMode: .fit)
-                .padding(.horizontal, 123)
+                .aspectRatio(UICons.imageAspectRatio, contentMode: .fit)
+                .padding(.horizontal, UICons.heartHorizontalPadding)
             Text(event.previewDescription)
                 .font(.textStyle4)
                 .multilineTextAlignment(.center)
                 .foregroundColor(.darkSlateBlue)
         }
-        .padding(.bottom, 16)
+        .padding(.bottom, UICons.textBottomPadding)
     }
 
     var calendar: some View {
