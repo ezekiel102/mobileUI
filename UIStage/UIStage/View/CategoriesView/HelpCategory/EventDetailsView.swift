@@ -23,17 +23,11 @@ struct EventDetailsView: View {
                 VStack(alignment: .leading,
                        spacing: UICons.zeroSpacingForStack) {
                     title
-                        .padding(.bottom, UICons.bottomPaddingTitle)
                     subtitle
-                        .padding(.bottom, UICons.bottomPaddingSubTitle)
                     informationText
-                        .padding(.bottom, UICons.bottomPaddingTextVStack)
                     imageGroup
-                        .padding(.bottom, UICons.bottomPaddingImageGroup)
                     description
-                        .padding(.bottom, UICons.bottomPaddingDescription)
                     link
-                        .padding(.bottom, UICons.bottomLastParagrahPadding)
                 }
                        .padding(.top, UICons.topPaddingScrollView)
                        .padding(.horizontal, UICons.horizontalPaddingScrollView)
@@ -67,6 +61,7 @@ struct EventDetailsView: View {
         Text(event.title)
             .font(.textStyle3)
             .foregroundColor(.blueGrey)
+            .padding(.bottom, UICons.bottomPaddingTitle)
     }
 
     var subtitle: some View {
@@ -95,6 +90,7 @@ struct EventDetailsView: View {
                 .font(.textStyle12)
                 .foregroundColor(.charcoalGrey)
         })
+        .padding(.bottom, UICons.bottomPaddingSubTitle)
     }
 
     var informationText: some View {
@@ -128,6 +124,7 @@ struct EventDetailsView: View {
                     .underline()
             }
         })
+        .padding(.bottom, UICons.bottomPaddingTextVStack)
     }
 
     var imageGroup: some View {
@@ -135,18 +132,18 @@ struct EventDetailsView: View {
             Image(event.mainImage)
                 .resizable()
                 .scaledToFit()
+                .aspectRatio(CGSize(width: 222, height: 168), contentMode: .fit)
             VStack(spacing: UICons.imageGroupVerticalSpacing) {
                 ForEach(event.secondaryImage, id: \.self) {
                     Image($0)
                         .resizable()
                         .scaledToFit()
-                        .aspectRatio(UICons.secondaryImageAspectRatio, contentMode: .fit)
+                        .aspectRatio(CGSize(width: 103, height: 79), contentMode: .fit)
                 }
             }
-            .fixedSize()
         }
         .frame(height: UICons.imageGroupFrameHeight)
-        .frame(maxWidth: .infinity)
+        .padding(.bottom, UICons.bottomPaddingImageGroup)
     }
 
     var description: some View {
@@ -163,8 +160,7 @@ struct EventDetailsView: View {
         }
         .foregroundColor(.charcoalGrey)
         .font(.textStyle7)
-        .multilineTextAlignment(.leading)
-        .frame(maxWidth: .infinity)
+        .padding(.bottom, UICons.bottomPaddingDescription)
     }
 
     var link: some View {
@@ -174,6 +170,7 @@ struct EventDetailsView: View {
                 .foregroundColor(.leaf)
                 .font(.textStyle5)
         })
+        .padding(.bottom, UICons.bottomLastParagrahPadding)
     }
 
     var avatarsStack: some View {
@@ -188,6 +185,7 @@ struct EventDetailsView: View {
                         .scaledToFit()
                 }
                 .frame(height: UICons.avatarsFrameHeight)
+                .padding(.vertical, 16)
                 Text("+\(event.participants.count - 5)")
                     .font(.textStyle11)
                     .foregroundColor(.grey)
@@ -200,12 +198,11 @@ struct EventDetailsView: View {
                         .scaledToFit()
                 }
                 .frame(height: UICons.avatarsFrameHeight)
+                .padding(.vertical, 16)
                 Spacer()
             }
         })
-        .padding(.leading, UICons.avatarsStackLeadingPadding)
-            .frame(maxWidth: .infinity)
-            .frame(height: UICons.avatarsStackFrameHeight)
+            .padding(.leading, UICons.avatarsStackLeadingPadding)
             .background(Color.lightGrey)
             .shadow(color: .black20, radius: 2.0, x: 0.0, y: 2.0)
     }

@@ -23,7 +23,8 @@ struct EventListView: View {
                 .overlay {
                     filterButton
                 }
-            header
+            Toggle(isOn: $isFinished) {}
+                .toggleStyle(ToggleButtonsStyle())
             ZStack {
                 Color.lightGrey
                 ScrollView {
@@ -68,46 +69,35 @@ struct EventListView: View {
             .padding(.trailing, UICons.leadingPaddingLeftItemsNavBar)
         }
     }
+}
 
-    var header: some View {
-        ZStack {
-            HStack(
-                alignment: .center,
-                spacing: UICons.zeroSpacingForStack,
-                content: {
-                    Button {
-                        isFinished ?
-                        (isFinished = !isFinished) : (isFinished = isFinished)
-                    } label: {
-                        Text("Текущие")
-                            .font(.textStyle9)
-                            .foregroundColor(isFinished ? .leaf : .white)
-                            .frame(maxWidth: .infinity,
-                                   minHeight: UICons.calendarFrameHeight)
-                    }
-                    .background(!isFinished ? Color.leaf : .white)
-                    Button {
-                        isFinished ?
-                        (isFinished = isFinished) : (isFinished = !isFinished)
-                    } label: {
-                        Text("Завершенные")
-                            .font(.textStyle9)
-                            .foregroundColor(!isFinished ? .leaf : .white)
-                            .frame(maxWidth: .infinity,
-                                   minHeight: UICons.calendarFrameHeight)
-                    }
-                    .background(isFinished ? Color.leaf : .white)
-                })
-            .border(Color.leaf, width: 1.0)
-            .cornerRadius(4.0)
-            .padding(.horizontal)
+struct ToggleButtonsStyle: ToggleStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        HStack(spacing: 0) {
+            Button {
+                configuration.isOn = false
+            } label: {
+                Text("Текущие")
+                    .foregroundColor(!configuration.isOn ? .white : Color.leaf)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+            }
+            .background(!configuration.isOn ? Color.leaf : .white)
+            Button {
+                configuration.isOn = true
+            } label: {
+                Text("Завершенные")
+                    .foregroundColor(configuration.isOn ? .white : Color.leaf)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+            }
+            .background(configuration.isOn ? Color.leaf : .white)
         }
-        .frame(height: UICons.headerFrameHeight)
-        .frame(maxWidth: .infinity)
+        .font(.textStyle9)
+        .frame(height: UICons.toggleFrameHeight)
+        .border(Color.leaf, width: 1.0)
+        .cornerRadius(4.0)
+        .padding(.vertical, 10)
+        .padding(.horizontal, 16)
         .shadow(color: .whiteThree, radius: 0.0, x: 0.0, y: 0.5)
-        .background {
-            Color.white
-        }
     }
 }
 

@@ -16,7 +16,6 @@ struct MainTabBarView: View {
             Color.white
                 .ignoresSafeArea(edges: .bottom)
                 .shadow(color: .black20, radius: 2.0, x: 0.0, y: -1.0)
-                .frame(height: UICons.tabBarHeight)
                 .overlay {
                     Arc()
                         .fill(Color.white)
@@ -30,7 +29,7 @@ struct MainTabBarView: View {
                 }
             }
         }
-        .fixedSize(horizontal: false, vertical: true)
+        .frame(height: UICons.tabBarHeight)
     }
 }
 

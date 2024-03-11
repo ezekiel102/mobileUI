@@ -22,7 +22,7 @@ struct SplashScreen: View {
                 VStack(spacing: UICons.loadingVStackSpacing) {
                     ProgressView()
                         .progressViewStyle(.circular)
-                        .controlSize(/*@START_MENU_TOKEN@*/.large/*@END_MENU_TOKEN@*/)
+                        .controlSize(.large)
                     Text("Загрузка...")
                         .font(.textStyle6)
                 }

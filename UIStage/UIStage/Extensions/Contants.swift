@@ -63,6 +63,7 @@ enum UICons {
     static let imageAspectRatio: CGFloat = CGFloat(113/20)
     static let heartHorizontalPadding: CGFloat = 123
     static let textBottomPadding: CGFloat = 16
+    static let toggleFrameHeight: CGFloat = 23.5
 
     // MARK: - EventDetaulsView constants
     static let bottomPaddingTitle: CGFloat = 17

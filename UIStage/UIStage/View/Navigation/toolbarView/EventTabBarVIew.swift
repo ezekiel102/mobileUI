@@ -23,7 +23,6 @@ struct EventTabBarView: View {
                 }
                 .frame(maxWidth: .infinity)
             }
-            .font(.textStyle16)
             HStack(spacing: UICons.zeroSpacingForStack) {
                 Spacer()
                 Divider()
@@ -35,6 +34,7 @@ struct EventTabBarView: View {
             }
             .frame(height: UICons.eventDividerHeight)
         }
+        .font(.textStyle16)
         .frame(height: UICons.eventTabBarHeight)
         .background {
             Color.offWhite
