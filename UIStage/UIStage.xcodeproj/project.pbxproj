@@ -121,8 +121,8 @@
 		0A05B2102B98F23100562A47 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				0A05B2122B98F26500562A47 /* toolbarView */,
 				0A05B20C2B98B77100562A47 /* ViewCoordinator.swift */,
+				0A05B2122B98F26500562A47 /* toolbarView */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";

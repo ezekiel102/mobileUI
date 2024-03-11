@@ -24,12 +24,10 @@ struct EventTabBarView: View {
                 .frame(maxWidth: .infinity)
             }
             HStack(spacing: UICons.zeroSpacingForStack) {
-                Spacer()
-                Divider()
-                Spacer()
-                Divider()
-                Spacer()
-                Divider()
+                ForEach(0..<3) { _ in
+                    Spacer()
+                    Divider()
+                }
                 Spacer()
             }
             .frame(height: UICons.eventDividerHeight)
